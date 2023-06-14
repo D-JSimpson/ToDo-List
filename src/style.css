@@ -1,4 +1,10 @@
- /*Hamburger Switch*/
+body{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+/*Hamburger Switch*/
 [role="switch"][aria-checked="false"]{
     background: rgb(0, 255, 0);
     color: #eef;
@@ -7,14 +13,23 @@
     background: rgb(255, 0, 0);
     color: #eef;
 }
+/*-----------------*/
  
+/* The navBar menu */
+#navBar{
+    background-color: red;
+    width: 100%;
+    height: 10%;
+}
+/*------------------*/
+
  /* The sidebar menu */
  .sidebar {
-    height: 100%; /* 100% Full-height */
+    height: 90%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
-    top: 0;
+    top: 5%;
     left: 0;
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
@@ -61,7 +76,7 @@
   }
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
+  #content {
     transition: margin-left .5s; /* If you want a transition effect */
     padding: 20px;
   }

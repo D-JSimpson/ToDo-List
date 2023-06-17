@@ -10,19 +10,34 @@ mySidebar.classList.add("sidebar");
 mySidebar.classList.add("sidebarOpen");
 
 // Projects For the SideBar
+//Label
 const projectLabelContainer = document.createElement("div");
 projectLabelContainer.id = "projectLabelContainer";
 const projectLabel = document.createElement("span");
 projectLabel.innerText = "PROJECTS";
+
+function collapeProjects(evt) {
+  const el = evt.target;
+  changeProjectIcon(el);
+  projectsContainer.classList.toggle("projectsOpen");
+}
+function changeProjectIcon(el) {
+  el.innerText == "\u142F"
+    ? (el.innerText = "\u1438")
+    : (el.innerText = "\u142F");
+}
+//Buttons
 const sidbarButtonContainer = document.createElement("div");
 sidbarButtonContainer.id = "sidbarButtonContainer";
 const openClose = document.createElement("span");
-openClose.innerText = "\u1438"; //   -\u2796 | +\u2795 | downArrow \u142F
+openClose.innerText = "\u142F"; //   -\u2796 | +\u2795 | downArrow \u142F
+openClose.addEventListener("click", collapeProjects, false);
 const addProjects = document.createElement("span");
 addProjects.innerText = "\u2795";
 
 const projectsContainer = document.createElement("div");
 projectsContainer.id = "projectsContainer";
+projectsContainer.classList.add("projectsOpen");
 const projectHome = document.createElement("a");
 projectHome.innerText = "Home";
 const projectWork = document.createElement("a");

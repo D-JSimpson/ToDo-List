@@ -51,12 +51,18 @@ body {
 .contentPushed {
   margin-left: 250px;
 }
+.projectsOpen {
+  height: 250px !important;
+}
 /* The Sidebar Project Container*/
 #projectsContainer {
   background: linear-gradient(180deg, #ff0066, #2850ff);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.2s ease-out;
 }
 /* The Sidebar Project Label*/
 #projectLabelContainer {

@@ -22,12 +22,13 @@ const addProjects = document.createElement("span");
 addProjects.innerText = "\u2795";
 
 const projectsContainer = document.createElement("div");
+projectsContainer.id = "projectsContainer";
 const projectHome = document.createElement("a");
 projectHome.innerText = "Home";
 const projectWork = document.createElement("a");
 projectWork.innerText = "Work";
 const projectEducation = document.createElement("a");
-projectEducation.innerText = "Educaition";
+projectEducation.innerText = "Education";
 
 // Dummy content for site
 const content = document.createElement("div");

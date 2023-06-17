@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Indie+Flower&family=Signika&display=swap");
+
 body {
   display: flex;
   flex-direction: column;
@@ -30,6 +32,7 @@ body {
 
 /* The sidebar menu */
 .sidebar {
+  font-family: "Signika";
   height: 100%; /* 90% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -48,16 +51,30 @@ body {
 .contentPushed {
   margin-left: 250px;
 }
+/* The Sidebar Project Container*/
+#projectsContainer {
+  background: linear-gradient(180deg, #ff0066, #2850ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /* The Sidebar Project Label*/
 #projectLabelContainer {
   height: auto;
   color: white;
   display: flex;
-  font-size: 1.5em;
+  font-size: 2em;
   padding-left: 5%;
+  background: -webkit-linear-gradient(180deg, #ff0000, #8400ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-#projectLabelContainer > :hover {
+#projectLabelContainer > :first-child:hover,
+#sidbarButtonContainer > :hover,
+#projectsContainer > :hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 /* The Sidebar Project Buttons*/
 #sidbarButtonContainer {
@@ -74,6 +91,7 @@ body {
   color: #818181;
   display: block;
   transition: 0.3s;
+  width: fit-content;
 }
 
 /* When you mouse over the navigation links, change their color */

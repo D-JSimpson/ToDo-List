@@ -1,8 +1,3 @@
-/*
-    <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">About</a>
-*/
 import "./style.css";
 
 const body = document.querySelector("body");
@@ -18,9 +13,13 @@ mySidebar.classList.add("sidebarOpen");
 const projectLabelContainer = document.createElement("div");
 projectLabelContainer.id = "projectLabelContainer";
 const projectLabel = document.createElement("span");
-projectLabel.innerText = "Projects";
+projectLabel.innerText = "PROJECTS";
+const sidbarButtonContainer = document.createElement("div");
+sidbarButtonContainer.id = "sidbarButtonContainer";
 const openClose = document.createElement("span");
-openClose.innerText = "\u2795"; //   \  2796
+openClose.innerText = "\u1438"; //   -\u2796 | +\u2795 | downArrow \u142F
+const addProjects = document.createElement("span");
+addProjects.innerText = "\u2795";
 
 const projectsContainer = document.createElement("div");
 const projectHome = document.createElement("a");
@@ -29,17 +28,17 @@ const projectWork = document.createElement("a");
 projectWork.innerText = "Work";
 const projectEducation = document.createElement("a");
 projectEducation.innerText = "Educaition";
+
 // Dummy content for site
 const content = document.createElement("div");
 content.id = "content";
 content.classList.add("contentPushed");
-const h2 = document.createElement("h2");
+const h2 = document.createElement("span");
 h2.innerText = "Collapsed Sidebar";
-const p = document.createElement("p");
+const p = document.createElement("span");
 p.innerText = "Content...";
 
 /* Hamburger Switch Toggle Functions */
-// Change To Classes Instead of Inline CSS Also solves being there on open, Sidebar not actully bellow nav
 function handleClickEvent(evt) {
   const el = evt.target;
   el.getAttribute("aria-checked") === "true"
@@ -51,9 +50,6 @@ function handleClickEvent(evt) {
 
 /*--------------------------------------------*/
 // Hamburger In Top Right
-const hamburgerContainer = document.createElement("div");
-body.append(mySidebar, hamburgerContainer);
-navBar.appendChild(hamburgerContainer);
 const sidebarHamburger = document.createElement("button");
 sidebarHamburger.classList.add("openBtn");
 sidebarHamburger.innerHTML = "&#9776";
@@ -65,10 +61,10 @@ sidebarHamburger.addEventListener("click", handleClickEvent, false);
 
 /* Append Children */
 body.append(navBar, mySidebar, content);
-navBar.appendChild(hamburgerContainer);
+navBar.appendChild(sidebarHamburger);
 content.append(h2, p);
 projectsContainer.append(projectHome, projectWork, projectEducation);
-projectLabelContainer.append(projectLabel, openClose);
+sidbarButtonContainer.append(addProjects, openClose);
+projectLabelContainer.append(projectLabel, sidbarButtonContainer);
 mySidebar.append(projectLabelContainer, projectsContainer);
-hamburgerContainer.appendChild(sidebarHamburger);
 /*---------------*/

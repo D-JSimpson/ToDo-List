@@ -32,8 +32,7 @@ function displayProjectInputField() {
   const addProjectLabel = document.createElement("span");
   const nameInput = document.createElement("input");
   const nameInputLabel = document.createElement("span");
-  const colorsContainer = document.createElement("div");
-  const colorsSelect = document.createElement("select");
+  const colorsSelect = document.createElement("div");
   const buttonContainer = document.createElement("div");
   const cancel = document.createElement("button");
   const save = document.createElement("button");
@@ -44,6 +43,7 @@ function displayProjectInputField() {
   addProjectLabel.id = "addProjectLabel";
   buttonContainer.id = "buttonContainer";
   nameInput.id = "nameInput";
+  colorsSelect.id = "colorsSelect";
 
   // InnerText And Classes
   addProjectLabel.innerText = "Add Project";
@@ -55,19 +55,28 @@ function displayProjectInputField() {
 
   // Colors For The Selector
   const colors = [
-    { crimson: "#DC143C" },
-    { gold: "#FFD700" },
-    { lime: "#00FF00" },
-    { aqua: "#00FFFF" },
-    { violet: "#EE82EE" },
+    { Crimson: "#DC143C" },
+    { Coral: "#FF7F50" },
+    { Gold: "#FFD700" },
+    { Lime: "#00FF00" },
+    { Aqua: "#00FFFF" },
+    { RoyalBlue: "#4169E1" },
+    { Violet: "#EE82EE" },
+    { Siena: "#A0522D" },
+    { Lavender: "#E6E6FA" },
+    { HoneyDew: "#F0FFF0" },
+    { Black: "#000000" },
   ];
   colors.forEach((element) => {
-    const option = document.createElement("option");
+    const option = document.createElement("span");
+    const colorCircle = document.createElement("span");
     const [val] = Object.values(element);
     const [key] = Object.keys(element);
-    option.value = val;
+    option.classList.add("option");
+    colorCircle.classList.add("colorCircle");
+    colorCircle.style.backgroundColor = val;
     option.innerText = key;
-    colorsSelect.appendChild(option);
+    colorsSelect.append(colorCircle, option);
   });
 
   // Append Everything Together
@@ -75,11 +84,10 @@ function displayProjectInputField() {
     addProjectLabel,
     nameInputLabel,
     nameInput,
-    colorsContainer,
+    colorsSelect,
     buttonContainer
   );
   projectUserInput.append(inputContainer);
-  colorsContainer.appendChild(colorsSelect);
   buttonContainer.append(cancel, save);
   body.appendChild(projectUserInput);
 }

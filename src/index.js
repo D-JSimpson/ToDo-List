@@ -1,4 +1,5 @@
 import "./style.css";
+import { createTodo, createProject } from "./todo";
 
 const body = document.querySelector("body");
 
@@ -16,14 +17,79 @@ projectLabelContainer.id = "projectLabelContainer";
 const projectLabel = document.createElement("span");
 projectLabel.innerText = "PROJECTS";
 
-// Buttons
+// Buttons For Projects
 const sidbarButtonContainer = document.createElement("div");
 sidbarButtonContainer.id = "sidbarButtonContainer";
 const openClose = document.createElement("span");
 openClose.innerText = "\u142F"; //   -\u2796 | +\u2795 | downArrow \u142F
+
 const addProjects = document.createElement("span");
 addProjects.innerText = "\u2795";
+function displayProjectInputField() {
+  // Create Necessary Elements
+  const projectUserInput = document.createElement("div");
+  const inputContainer = document.createElement("div");
+  const addProjectLabel = document.createElement("span");
+  const nameInput = document.createElement("input");
+  const nameInputLabel = document.createElement("span");
+  const colorsContainer = document.createElement("div");
+  const colorsSelect = document.createElement("select");
+  const buttonContainer = document.createElement("div");
+  const cancel = document.createElement("button");
+  const save = document.createElement("button");
 
+  // Give Them IDs
+  projectUserInput.id = "projectUserInput";
+  inputContainer.id = "inputContainer";
+  addProjectLabel.id = "addProjectLabel";
+  buttonContainer.id = "buttonContainer";
+  nameInput.id = "nameInput";
+
+  // InnerText And Classes
+  addProjectLabel.innerText = "Add Project";
+  nameInputLabel.innerText = "Name";
+  cancel.innerText = "CANCEL";
+  save.innerText = "SAVE";
+  cancel.classList.add("cancel");
+  save.classList.add("save");
+
+  // Colors For The Selector
+  const colors = [
+    { crimson: "#DC143C" },
+    { gold: "#FFD700" },
+    { lime: "#00FF00" },
+    { aqua: "#00FFFF" },
+    { violet: "#EE82EE" },
+  ];
+  colors.forEach((element) => {
+    const option = document.createElement("option");
+    const [val] = Object.values(element);
+    const [key] = Object.keys(element);
+    option.value = val;
+    option.innerText = key;
+    colorsSelect.appendChild(option);
+  });
+
+  // Append Everything Together
+  inputContainer.append(
+    addProjectLabel,
+    nameInputLabel,
+    nameInput,
+    colorsContainer,
+    buttonContainer
+  );
+  projectUserInput.append(inputContainer);
+  colorsContainer.appendChild(colorsSelect);
+  buttonContainer.append(cancel, save);
+  body.appendChild(projectUserInput);
+}
+function getProjectInformation() {
+  displayProjectInputField();
+}
+function projectController() {
+  getProjectInformation();
+}
+addProjects.addEventListener("click", projectController, false);
 // Handles projects
 const projectsContainer = document.createElement("div");
 projectsContainer.id = "projectsContainer";
@@ -48,8 +114,8 @@ projectEducation.innerText = "Education";
 const content = document.createElement("div");
 content.id = "content";
 content.classList.add("contentPushed");
-const h2 = document.createElement("span");
-h2.innerText = "Collapsed Sidebar";
+const contentHome = document.createElement("div");
+contentHome.innerText = "Projects";
 const p = document.createElement("span");
 p.innerText = "Content...";
 
@@ -78,7 +144,7 @@ sidebarHamburger.addEventListener("click", handleClickEvent, false);
 /* Append Children */
 body.append(navBar, mySidebar, content);
 navBar.appendChild(sidebarHamburger);
-content.append(h2, p);
+content.append(contentHome, p);
 projectsContainer.append(projectHome, projectWork, projectEducation);
 sidbarButtonContainer.append(addProjects, openClose);
 projectLabelContainer.append(projectLabel, sidbarButtonContainer);

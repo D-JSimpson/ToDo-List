@@ -31,8 +31,10 @@ function displayProjectInputField() {
   const inputContainer = document.createElement("div");
   const addProjectLabel = document.createElement("span");
   const nameInput = document.createElement("input");
-  const nameInputLabel = document.createElement("span");
-  const colorsSelect = document.createElement("div");
+  const nameInputLabel = document.createElement("label");
+  const nameInputSpan = document.createElement("span");
+  const projectForm = document.createElement("form");
+  const colorsSelect = document.createElement("select");
   const buttonContainer = document.createElement("div");
   const cancel = document.createElement("button");
   const save = document.createElement("button");
@@ -42,17 +44,40 @@ function displayProjectInputField() {
   inputContainer.id = "inputContainer";
   addProjectLabel.id = "addProjectLabel";
   buttonContainer.id = "buttonContainer";
+  nameInputLabel.id = "nameInputLabel";
   nameInput.id = "nameInput";
+  nameInputSpan.id = "nameInputSpan";
+  projectForm.id = "projectForm";
   colorsSelect.id = "colorsSelect";
 
   // InnerText And Classes
   addProjectLabel.innerText = "Add Project";
-  nameInputLabel.innerText = "Name";
+  nameInputSpan.innerText = "NAME:";
   cancel.innerText = "CANCEL";
   save.innerText = "SAVE";
   cancel.classList.add("cancel");
   save.classList.add("save");
+  save.disabled = true;
 
+  // Funtionality
+  nameInputLabel.setAttribute("for", "nameInput");
+  nameInput.setAttribute("minlength", 1);
+  nameInput.toggleAttribute("required");
+  colorsSelect.setAttribute("size", 5);
+  save.setAttribute("type", "submit");
+  save.setAttribute("form", "projectForm");
+
+  nameInput.addEventListener("keyup", () => {
+    // Check if the form fields are valid.
+
+    if (nameInput.validity.valid) {
+      // If valid, enable submit button
+      save.disabled = false;
+    } else {
+      // If valid, disable submit button
+      save.disabled = true;
+    }
+  });
   // Colors For The Selector
   const colors = [
     { Crimson: "#DC143C" },
@@ -68,25 +93,19 @@ function displayProjectInputField() {
     { Black: "#000000" },
   ];
   colors.forEach((element) => {
-    const option = document.createElement("span");
-    const colorCircle = document.createElement("span");
+    const option = document.createElement("option");
     const [val] = Object.values(element);
     const [key] = Object.keys(element);
     option.classList.add("option");
-    colorCircle.classList.add("colorCircle");
-    colorCircle.style.backgroundColor = val;
+    option.value = val;
     option.innerText = key;
-    colorsSelect.append(colorCircle, option);
+    colorsSelect.appendChild(option);
   });
 
   // Append Everything Together
-  inputContainer.append(
-    addProjectLabel,
-    nameInputLabel,
-    nameInput,
-    colorsSelect,
-    buttonContainer
-  );
+  nameInputLabel.append(nameInputSpan, nameInput);
+  projectForm.append(nameInputLabel, colorsSelect);
+  inputContainer.append(addProjectLabel, projectForm, buttonContainer);
   projectUserInput.append(inputContainer);
   buttonContainer.append(cancel, save);
   body.appendChild(projectUserInput);

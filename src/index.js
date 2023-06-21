@@ -47,6 +47,7 @@ function collapeProjects(evt) {
 }
 openClose.addEventListener("click", collapeProjects, false);
 
+// The Projects Themselvesd
 projectsContainer.classList.add("projectsOpen");
 const projectHome = document.createElement("a");
 projectHome.innerText = "Home";

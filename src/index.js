@@ -1,4 +1,5 @@
 import "./style.css";
+import "./projectForm.css";
 import { createTodo, createProject } from "./todo";
 
 const body = document.querySelector("body");
@@ -94,11 +95,16 @@ function displayProjectInputField() {
   ];
   colors.forEach((element) => {
     const option = document.createElement("option");
+    const colorCircle = document.createElement("span");
     const [val] = Object.values(element);
     const [key] = Object.keys(element);
     option.classList.add("option");
     option.value = val;
     option.innerText = key;
+    colorCircle.classList.add("colorCircle");
+    colorCircle.style.backgroundColor = val;
+
+    option.appendChild(colorCircle);
     colorsSelect.appendChild(option);
   });
 

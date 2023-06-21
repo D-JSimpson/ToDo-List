@@ -46,15 +46,24 @@ function collapeProjects(evt) {
   projectsContainer.classList.toggle("projectsOpen");
 }
 openClose.addEventListener("click", collapeProjects, false);
-
-// The Projects Themselvesd
 projectsContainer.classList.add("projectsOpen");
-const projectHome = document.createElement("a");
-projectHome.innerText = "Home";
-const projectWork = document.createElement("a");
-projectWork.innerText = "Work";
-const projectEducation = document.createElement("a");
-projectEducation.innerText = "Education";
+// Add Project To The Sidebar Using The Factory Function
+function addProject(project) {
+  const elem = document.createElement("a");
+  const colorCircle = document.createElement("span");
+  elem.innerText = project.getName();
+  colorCircle.style.backgroundColor = project.getColor();
+  colorCircle.classList.add("colorCircle");
+  elem.appendChild(colorCircle);
+  projectsContainer.appendChild(elem);
+}
+// The Projects Themselves
+const projectHome = createProject("Home", "#DC143C");
+const projectWork = createProject("Work", "#00FF00");
+const projectEducation = createProject("Education", "#FFD700");
+addProject(projectHome);
+addProject(projectWork);
+addProject(projectEducation);
 
 // Dummy content for site
 const content = document.createElement("div");
@@ -91,7 +100,6 @@ sidebarHamburger.addEventListener("click", handleClickEvent, false);
 body.append(navBar, mySidebar, content);
 navBar.appendChild(sidebarHamburger);
 content.append(contentHome, p);
-projectsContainer.append(projectHome, projectWork, projectEducation);
 sidbarButtonContainer.append(addProjects, openClose);
 projectLabelContainer.append(projectLabel, sidbarButtonContainer);
 mySidebar.append(projectLabelContainer, projectsContainer);

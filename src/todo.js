@@ -1,6 +1,7 @@
 export function createProject(name, color) {
-  this.name = name;
-  this.color = color;
+  const getName = () => name;
+  const getColor = () => color;
+  return { getName, getColor };
 }
 export function createTodo(task, description, dueDate, priority, notes) {
   const getTask = () => task;

@@ -76,6 +76,9 @@
   display: flex;
   align-items: center;
 }
+option:checked {
+  background: linear-gradient(#64748b, #94a3b8);
+}
 .option:hover {
   background-color: #d4d4d8;
 }

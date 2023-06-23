@@ -1,5 +1,6 @@
 import "./style.css";
 import "./projectForm.css";
+import { events } from "./pubsub";
 import { createTodo, createProject } from "./todo";
 import displayProjectInputField from "./projectForm";
 
@@ -31,10 +32,7 @@ addProjects.innerText = "\u2795";
 function getProjectInformation() {
   displayProjectInputField();
 }
-function projectController() {
-  getProjectInformation();
-}
-addProjects.addEventListener("click", projectController, false);
+addProjects.addEventListener("click", getProjectInformation, false);
 // Handles projects
 const projectsContainer = document.createElement("div");
 projectsContainer.id = "projectsContainer";
@@ -48,22 +46,29 @@ function collapeProjects(evt) {
 openClose.addEventListener("click", collapeProjects, false);
 projectsContainer.classList.add("projectsOpen");
 // Add Project To The Sidebar Using The Factory Function
-function addProject(project) {
-  const elem = document.createElement("a");
-  const colorCircle = document.createElement("span");
-  elem.innerText = project.getName();
-  colorCircle.style.backgroundColor = project.getColor();
-  colorCircle.classList.add("colorCircle");
-  elem.appendChild(colorCircle);
-  projectsContainer.appendChild(elem);
-}
+const projectController = (() => {
+  const addProject = (project) => {
+    const elem = document.createElement("a");
+    const colorCircle = document.createElement("span");
+    elem.innerText = project.getName();
+    colorCircle.style.backgroundColor = project.getColor();
+    colorCircle.classList.add("colorCircle");
+    elem.appendChild(colorCircle);
+    projectsContainer.appendChild(elem);
+  };
+  const deleteProject = () => {};
+
+  // Listen For Project Creation And Deletion
+  events.on("addProject", addProject);
+  events.on("deleteProject", deleteProject);
+})();
 // The Projects Themselves
 const projectHome = createProject("Home", "#DC143C");
 const projectWork = createProject("Work", "#00FF00");
 const projectEducation = createProject("Education", "#FFD700");
-addProject(projectHome);
-addProject(projectWork);
-addProject(projectEducation);
+events.emit("addProject", projectHome);
+events.emit("addProject", projectWork);
+events.emit("addProject", projectEducation);
 
 // Dummy content for site
 const content = document.createElement("div");

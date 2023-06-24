@@ -83,18 +83,24 @@ const projectController = (() => {
   const deleteProject = () => {};
   const addProjectToPage = (project) => {
     // Create Needed Elements
+    const pageProjectContainer = document.createElement("div");
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
     const name = document.createElement("span");
+    const ellispe = document.createElement("span");
     // Functionality
+    pageProjectContainer.classList.add("pageProjectContainer");
     elem.classList.add("pageProject");
-    colorCircle.style.backgroundColor = project.getColor();
-    name.innerText += project.getName();
     colorCircle.classList.add("colorCircle-P");
+    ellispe.classList.add("ellipse");
+    name.innerText += project.getName();
+    colorCircle.style.backgroundColor = project.getColor();
+    ellispe.innerText = "\u2026";
+
     // Append Together
-    elem.appendChild(colorCircle);
-    elem.appendChild(name);
-    content.appendChild(elem);
+    elem.append(colorCircle, name);
+    pageProjectContainer.append(elem, ellispe);
+    content.appendChild(pageProjectContainer);
   };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);

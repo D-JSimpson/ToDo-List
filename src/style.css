@@ -183,17 +183,45 @@ body {
   cursor: pointer;
 }
 /* Projects on Home Screen */
+.pageProjectContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 .pageProject {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 50px;
+  width: 88%;
   border-radius: 10px;
   padding-left: 20px;
 }
-.pageProject:hover {
+.pageProjectContainer:hover > .pageProject {
   background-color: #d4d4d8;
   transition: 0.2s;
   cursor: pointer;
+}
+.pageProjectContainer:hover > .ellipse {
+  display: block !important;
+}
+/* ellipse next to projects */
+.ellipse {
+  margin-left: auto;
+  margin-right: 20px;
+  height: 90%;
+  width: 5%;
+  font-size: 1.5em;
+  color: #111;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.ellipse:hover {
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: #e4e4e7;
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

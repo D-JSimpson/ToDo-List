@@ -47,7 +47,7 @@ openClose.addEventListener("click", collapeProjects, false);
 projectsContainer.classList.add("projectsOpen");
 // Add Project To The Sidebar Using The Factory Function
 const projectController = (() => {
-  const addProject = (project) => {
+  const addProjectToSideBar = (project) => {
     // Create Needed Elements
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
@@ -62,9 +62,10 @@ const projectController = (() => {
     projectsContainer.appendChild(elem);
   };
   const deleteProject = () => {};
-
+  const addProjectToPage = (project) => {};
   // Listen For Project Creation And Deletion
-  events.on("addProject", addProject);
+  events.on("addProject", addProjectToSideBar);
+  events.on("addProject", addProjectToPage);
   events.on("deleteProject", deleteProject);
 })();
 // The Projects Themselves
@@ -77,13 +78,21 @@ events.emit("addProject", projectEducation);
 
 // Dummy content for site
 const content = document.createElement("div");
+const contentHome = document.createElement("div");
+const homeAddProjectBtn = document.createElement("button");
+const p = document.createElement("span");
+// ID's and InnerText
 content.id = "content";
 content.classList.add("contentPushed");
-const contentHome = document.createElement("div");
+contentHome.id = "contentHome";
 contentHome.innerText = "Projects";
-const p = document.createElement("span");
+homeAddProjectBtn.innerText = "\u2795 Add Project";
+homeAddProjectBtn.id = "homeAddProjectBtn";
 p.innerText = "Content...";
-
+// Functionality
+homeAddProjectBtn.addEventListener("click", getProjectInformation, false);
+// Append Children
+contentHome.appendChild(homeAddProjectBtn);
 /* Hamburger Switch Toggle Functions */
 function handleClickEvent(evt) {
   const el = evt.target;

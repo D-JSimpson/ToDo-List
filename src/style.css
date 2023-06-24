@@ -155,7 +155,7 @@ body {
   max-width: min(100%, 800px);
   padding-left: calc(50% - min(50%, 400px)); /* center element */
 }
-/* Projects Home Screen */
+/* Projects Home Screen Itself */
 #contentHome {
   width: 100%;
   height: 121px;
@@ -163,7 +163,9 @@ body {
   display: flex;
   align-items: center;
   margin-top: 30px;
+  margin-bottom: 30px;
   border-bottom: 1px solid #d4d4d8;
+  grid-row: 1;
 }
 /* Button to add Projects on Home Screen */
 #homeAddProjectBtn {
@@ -176,6 +178,19 @@ body {
   height: 40px;
 }
 #homeAddProjectBtn:hover {
+  background-color: #d4d4d8;
+  transition: 0.2s;
+  cursor: pointer;
+}
+/* Projects on Home Screen */
+.pageProject {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+.pageProject:hover {
   background-color: #d4d4d8;
   transition: 0.2s;
   cursor: pointer;

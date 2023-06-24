@@ -1,3 +1,5 @@
+// TODO: FIX projectsContainer's Height
+
 import "./style.css";
 import "./projectForm.css";
 import { events } from "./pubsub";
@@ -33,6 +35,23 @@ function getProjectInformation() {
   displayProjectInputField();
 }
 addProjects.addEventListener("click", getProjectInformation, false);
+
+// Dummy content for site
+const content = document.createElement("div");
+const contentHome = document.createElement("div");
+const homeAddProjectBtn = document.createElement("button");
+// ID's and InnerText
+content.id = "content";
+content.classList.add("contentPushed");
+contentHome.id = "contentHome";
+contentHome.innerText = "Projects";
+homeAddProjectBtn.innerText = "\u2795 Add Project";
+homeAddProjectBtn.id = "homeAddProjectBtn";
+// Functionality
+homeAddProjectBtn.addEventListener("click", getProjectInformation, false);
+// Append Children
+contentHome.appendChild(homeAddProjectBtn);
+
 // Handles projects
 const projectsContainer = document.createElement("div");
 projectsContainer.id = "projectsContainer";
@@ -62,7 +81,21 @@ const projectController = (() => {
     projectsContainer.appendChild(elem);
   };
   const deleteProject = () => {};
-  const addProjectToPage = (project) => {};
+  const addProjectToPage = (project) => {
+    // Create Needed Elements
+    const elem = document.createElement("a");
+    const colorCircle = document.createElement("span");
+    const name = document.createElement("span");
+    // Functionality
+    elem.classList.add("pageProject");
+    colorCircle.style.backgroundColor = project.getColor();
+    name.innerText += project.getName();
+    colorCircle.classList.add("colorCircle-P");
+    // Append Together
+    elem.appendChild(colorCircle);
+    elem.appendChild(name);
+    content.appendChild(elem);
+  };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
@@ -76,23 +109,6 @@ events.emit("addProject", projectHome);
 events.emit("addProject", projectWork);
 events.emit("addProject", projectEducation);
 
-// Dummy content for site
-const content = document.createElement("div");
-const contentHome = document.createElement("div");
-const homeAddProjectBtn = document.createElement("button");
-const p = document.createElement("span");
-// ID's and InnerText
-content.id = "content";
-content.classList.add("contentPushed");
-contentHome.id = "contentHome";
-contentHome.innerText = "Projects";
-homeAddProjectBtn.innerText = "\u2795 Add Project";
-homeAddProjectBtn.id = "homeAddProjectBtn";
-p.innerText = "Content...";
-// Functionality
-homeAddProjectBtn.addEventListener("click", getProjectInformation, false);
-// Append Children
-contentHome.appendChild(homeAddProjectBtn);
 /* Hamburger Switch Toggle Functions */
 function handleClickEvent(evt) {
   const el = evt.target;
@@ -118,7 +134,7 @@ sidebarHamburger.addEventListener("click", handleClickEvent, false);
 /* Append Children */
 body.append(navBar, mySidebar, content);
 navBar.appendChild(sidebarHamburger);
-content.append(contentHome, p);
+content.appendChild(contentHome);
 sidbarButtonContainer.append(addProjects, openClose);
 projectLabelContainer.append(projectLabel, sidbarButtonContainer);
 mySidebar.append(projectLabelContainer, projectsContainer);

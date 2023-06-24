@@ -48,12 +48,17 @@ projectsContainer.classList.add("projectsOpen");
 // Add Project To The Sidebar Using The Factory Function
 const projectController = (() => {
   const addProject = (project) => {
+    // Create Needed Elements
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
-    elem.innerText = project.getName();
+    const name = document.createElement("span");
+    // Functionality
     colorCircle.style.backgroundColor = project.getColor();
-    colorCircle.classList.add("colorCircle");
+    name.innerText += project.getName();
+    colorCircle.classList.add("colorCircle-P");
+    // Append Together
     elem.appendChild(colorCircle);
+    elem.appendChild(name);
     projectsContainer.appendChild(elem);
   };
   const deleteProject = () => {};

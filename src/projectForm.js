@@ -1,3 +1,6 @@
+import { createProject } from "./todo";
+import { events } from "./pubsub";
+
 const body = document.querySelector("body");
 
 // Delete Form Made By displayProjectInputField() When Needed
@@ -6,6 +9,14 @@ function removeProjectInputField(projectUserInput) {
   const newElement = projectUserInput.cloneNode(true);
   body.replaceChild(newElement, projectUserInput);
   body.removeChild(newElement);
+}
+
+// Handles When the User Submits the Project Form
+function projectFormSubmission(form) {
+  const name = form.elements.nameInput.value;
+  const color = form.elements.colorsSelect.value;
+  const newProject = createProject(name, color);
+  events.emit("addProject", newProject);
 }
 
 export default function displayProjectInputField() {
@@ -45,11 +56,17 @@ export default function displayProjectInputField() {
   // Funtionality
   nameInputLabel.setAttribute("for", "nameInput");
   nameInput.setAttribute("minlength", 1);
+  nameInput.setAttribute("maxlength", 20);
   nameInput.toggleAttribute("required");
   colorsSelect.setAttribute("size", 5);
   save.setAttribute("type", "submit");
   save.setAttribute("form", "projectForm");
-
+  // When Form Submitted
+  projectForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Unsure If Needed, But prevents Webpack Reloading The Page
+    projectFormSubmission(projectForm);
+    removeProjectInputField(projectUserInput);
+  });
   nameInput.addEventListener("keyup", () => {
     // Check if the form fields are valid.
     if (nameInput.validity.valid) {
@@ -60,6 +77,7 @@ export default function displayProjectInputField() {
       save.disabled = true;
     }
   });
+  // Checks If User Clicks Out Of Project Form
   projectUserInput.addEventListener("click", (event) => {
     const withinBoundaries = event.composedPath().includes(inputContainer);
     if (!withinBoundaries) removeProjectInputField(projectUserInput);
@@ -97,7 +115,7 @@ export default function displayProjectInputField() {
     option.appendChild(colorCircle);
     colorsSelect.appendChild(option);
   });
-  colorsSelect.firstChild.selected = true;
+  colorsSelect.firstChild.selected = true; // Default Value
 
   // Append Everything Together
   nameInputLabel.append(nameInputSpan, nameInput);

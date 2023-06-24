@@ -101,7 +101,14 @@ body {
   display: flex;
   align-items: center;
 }
-
+/* Same as color circle in projectForm.css just without margin-left */
+.colorCircle-P {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 360px;
+  margin-right: 20px;
+}
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
   color: #f1f1f1;

@@ -64,7 +64,8 @@ function collapeProjects(evt) {
 }
 openClose.addEventListener("click", collapeProjects, false);
 projectsContainer.classList.add("projectsOpen");
-// Add Project To The Sidebar Using The Factory Function
+
+// Add Project To The Sidebar and Page Using The Factory Function
 const projectController = (() => {
   const addProjectToSideBar = (project) => {
     // Create Needed Elements
@@ -81,27 +82,75 @@ const projectController = (() => {
     projectsContainer.appendChild(elem);
   };
   const deleteProject = () => {};
+  // Delete pop up Made By addProjectToPage() When Needed
+  const removeProjectOptions = (projectOptions, tools) => {
+    // Clone Node To Remove Event Listeners Then Remove From Page
+    const newElement = projectOptions.cloneNode(true);
+    body.replaceChild(newElement, projectOptions);
+    body.removeChild(newElement);
+    tools.remove();
+  };
+  // Add the options themselves
+  const addProjectOptions = (tools) => {
+    // Create Needed Elements
+    const optionsContainer = document.createElement("div");
+    const addAbove = document.createElement("a");
+    const addBelow = document.createElement("a");
+    const edit = document.createElement("a");
+    const remove = document.createElement("a");
+
+    optionsContainer.id = "optionsContainer";
+    // InnerText
+    addAbove.innerText = "Add Above";
+    addBelow.innerText = "Add Below";
+    edit.innerText = "Edit Project";
+    remove.innerText = "Remove Project";
+    optionsContainer.append(addAbove, addBelow, edit, remove);
+    tools.appendChild(optionsContainer);
+  };
   const addProjectToPage = (project) => {
     // Create Needed Elements
     const pageProjectContainer = document.createElement("div");
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
     const name = document.createElement("span");
-    const ellispe = document.createElement("span");
+
+    const ellipse = document.createElement("span");
     // Functionality
     pageProjectContainer.classList.add("pageProjectContainer");
     elem.classList.add("pageProject");
     colorCircle.classList.add("colorCircle-P");
-    ellispe.classList.add("ellipse");
+
+    ellipse.classList.add("ellipse");
     name.innerText += project.getName();
     colorCircle.style.backgroundColor = project.getColor();
-    ellispe.innerText = "\u2026";
+
+    // Open Project Options
+    ellipse.innerText = "\u2026"; // An ellipse
+    ellipse.addEventListener("click", () => {
+      const projectOptionsBG = document.createElement("div"); // To Make Rest Of Webiste Unclickable
+      const tools = document.createElement("div");
+      // Functionality
+      projectOptionsBG.classList.add("projectOptionsBG");
+      tools.classList.add("tools");
+      body.appendChild(projectOptionsBG);
+      pageProjectContainer.appendChild(tools);
+      // Add the orijects to reated box
+      addProjectOptions(tools);
+      // Checks If User Clicks Anywhere else on page to remove options
+      projectOptionsBG.addEventListener("click", (event) => {
+        const withinBoundaries = event.composedPath().includes(tools);
+        console.log(event.composedPath());
+        if (!withinBoundaries) removeProjectOptions(projectOptionsBG, tools);
+      });
+    });
 
     // Append Together
     elem.append(colorCircle, name);
-    pageProjectContainer.append(elem, ellispe);
+    pageProjectContainer.append(elem, ellipse);
     content.appendChild(pageProjectContainer);
   };
+
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
@@ -127,7 +176,7 @@ function handleClickEvent(evt) {
 }
 
 /*--------------------------------------------*/
-// Hamburger In Top Right
+// Hamburger In Top left
 const sidebarHamburger = document.createElement("button");
 sidebarHamburger.classList.add("openBtn");
 sidebarHamburger.innerHTML = "&#9776";

@@ -184,6 +184,7 @@ body {
 }
 /* Projects on Home Screen */
 .pageProjectContainer {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -222,6 +223,48 @@ body {
   cursor: pointer;
   transition: 0.2s;
   background-color: #e4e4e7;
+}
+/* Options that come up when ellipse is pressed */
+
+.projectOptionsBG {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 4;
+}
+.tools {
+  height: 200px;
+  width: 200px;
+  background-color: #0f172a;
+  border-radius: 5px;
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  margin-left: -200px;
+  z-index: 6;
+}
+#optionsContainer {
+  height: 100%;
+  width: calc(100% - 20px);
+  padding-left: 10px;
+  padding-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  background: linear-gradient(180deg, #ff0066, #2850ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#optionsContainer a {
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px;
+}
+#optionsContainer > :hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

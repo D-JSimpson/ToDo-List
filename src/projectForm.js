@@ -73,7 +73,7 @@ export default function displayProjectInputField() {
       // If valid, enable submit button
       save.disabled = false;
     } else {
-      // If valid, disable submit button
+      // If not valid, disable submit button
       save.disabled = true;
     }
   });

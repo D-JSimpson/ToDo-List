@@ -18,18 +18,20 @@ mySidebar.classList.add("sidebarOpen");
 // Projects For the SideBar
 // Label
 const projectLabelContainer = document.createElement("div");
-projectLabelContainer.id = "projectLabelContainer";
 const projectLabel = document.createElement("span");
+projectLabelContainer.id = "projectLabelContainer";
 projectLabel.innerText = "PROJECTS";
-
+projectLabel.title = "PROJECTS";
 // Buttons For Projects
 const sidbarButtonContainer = document.createElement("div");
-sidbarButtonContainer.id = "sidbarButtonContainer";
 const openClose = document.createElement("span");
-openClose.innerText = "\u142F"; //   -\u2796 | +\u2795 | downArrow \u142F
-
 const addProjects = document.createElement("span");
+
+sidbarButtonContainer.id = "sidbarButtonContainer";
+openClose.innerText = "\u142F"; //   -\u2796 | +\u2795 | downArrow \u142F
 addProjects.innerText = "\u2795";
+addProjects.title = "ADD PROJECTS";
+openClose.title = "TOGGLE PROJECT LIST";
 
 function getProjectInformation() {
   displayProjectInputField();
@@ -75,6 +77,7 @@ const projectController = (() => {
     // Functionality
     colorCircle.style.backgroundColor = project.getColor();
     name.innerText += project.getName();
+    elem.title = project.getName();
     colorCircle.classList.add("colorCircle-P");
     // Append Together
     elem.appendChild(colorCircle);

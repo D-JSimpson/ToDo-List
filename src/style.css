@@ -55,7 +55,7 @@ body {
   }
 }
 .projectsOpen {
-  height: 100% !important;
+  max-height: 1440px !important;
 }
 /* The Sidebar Project Container*/
 #projectsContainer {
@@ -63,9 +63,9 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  height: 0px;
+  max-height: 0px;
   overflow: hidden;
-  transition: height 0.4s ease-out;
+  transition: max-height 0.3s ease;
 }
 /* The Sidebar Project Label*/
 #projectLabelContainer {

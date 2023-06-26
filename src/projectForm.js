@@ -17,6 +17,7 @@ function projectFormSubmission(form) {
   const color = form.elements.colorsSelect.value;
   const newProject = createProject(name, color);
   events.emit("addProject", newProject);
+  events.emit("render");
 }
 
 export default function displayProjectInputField() {

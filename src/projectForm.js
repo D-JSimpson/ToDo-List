@@ -1,5 +1,6 @@
 import { createProject } from "./todo";
 import { events } from "./pubsub";
+import projectModule from "./projectModule";
 
 const body = document.querySelector("body");
 
@@ -16,8 +17,8 @@ function projectFormSubmission(form) {
   const name = form.elements.nameInput.value;
   const color = form.elements.colorsSelect.value;
   const newProject = createProject(name, color);
-  events.emit("addProject", newProject);
-  events.emit("render");
+  events.emit("addProjectSidebarOnly", newProject);
+  projectModule(newProject);
 }
 
 export default function displayProjectInputField() {

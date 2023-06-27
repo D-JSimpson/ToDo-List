@@ -20,6 +20,7 @@ mySidebar.classList.add("sidebarOpen");
 const sideBarInbox = document.createElement("div");
 sideBarInbox.id = "sideBarInbox";
 sideBarInbox.innerText = "ToDo Inbox";
+sideBarInbox.title = "TODO INBOX";
 sideBarInbox.addEventListener("click", () => {
   openInbox();
 });

@@ -164,24 +164,26 @@ const projectController = (() => {
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
     const name = document.createElement("span");
-
     const ellipse = document.createElement("span");
-    // Functionality
+
+    // Classes
     pageProjectContainer.classList.add("pageProjectContainer");
     elem.classList.add("pageProject");
     colorCircle.classList.add("colorCircle-P");
+    ellipse.classList.add("ellipse");
 
+    // Get Project Info
+    name.innerText += project.getName();
+    colorCircle.style.backgroundColor = project.getColor();
+
+    // Functionality
     // Go To The Project's ToDos
     elem.addEventListener("click", () => {
       projectModule();
     });
-
-    ellipse.classList.add("ellipse");
-    name.innerText += project.getName();
-    colorCircle.style.backgroundColor = project.getColor();
-
     // Open Project Options
     ellipse.innerText = "\u2026"; // An ellipse
+    ellipse.title = "PROJECT OPTIONS";
     ellipse.addEventListener("click", () =>
       createOptionsBox(pageProjectContainer)
     );

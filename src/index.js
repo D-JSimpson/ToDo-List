@@ -115,3 +115,8 @@ const projectEducation = createProject("Education", "#FFD700");
 events.emit("addProject", projectHome);
 events.emit("addProject", projectWork);
 events.emit("addProject", projectEducation);
+
+const p1 = createProject("P1", "#FFD700");
+const t1 = createTodo("Study", "Now", "1/10/2023", "1");
+p1.addToDo(t1);
+console.log(p1.getToDo());

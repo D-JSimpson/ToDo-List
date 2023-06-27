@@ -76,7 +76,7 @@ const projectController = (() => {
 
     // Go To The Project's ToDos
     elem.addEventListener("click", () => {
-      projectModule();
+      projectModule(project);
     });
 
     // Append Together
@@ -179,7 +179,7 @@ const projectController = (() => {
     // Functionality
     // Go To The Project's ToDos
     elem.addEventListener("click", () => {
-      projectModule();
+      projectModule(project);
     });
     // Open Project Options
     ellipse.innerText = "\u2026"; // An ellipse
@@ -200,5 +200,7 @@ const projectController = (() => {
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
   events.on("addProject", updateProjectList);
+  events.on("addProjectSidebarOnly", addProjectToSideBar);
+  events.on("addProjectSidebarOnly", updateProjectList);
   events.on("render", render);
 })();

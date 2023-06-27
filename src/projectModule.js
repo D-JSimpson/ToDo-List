@@ -1,9 +1,13 @@
 import "./projectModule.css";
 
-export default function projectModule() {
+export default function projectModule(project) {
   // Make Space For New Project Todos
   const content = document.querySelector("#content");
   content.replaceChildren();
+  // The Project That Was Clicked/Created
+  const selectedProject = document.createElement("div");
+  selectedProject.id = "selectedProject";
+  selectedProject.innerText = project.getName();
 
   // Create The Different Priority Levels
   const priorityOne = document.createElement("div");
@@ -22,5 +26,11 @@ export default function projectModule() {
   priorityFour.innerText = "Priority 4";
 
   // Append To Show On Page
-  content.append(priorityOne, priorityTwo, priorityThree, priorityFour);
+  content.append(
+    selectedProject,
+    priorityOne,
+    priorityTwo,
+    priorityThree,
+    priorityFour
+  );
 }

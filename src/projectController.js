@@ -1,12 +1,19 @@
 import { events } from "./pubsub";
 import displayProjectInputField from "./projectForm";
+import projectModule from "./projectModule";
 import "./projectController.css";
 import "./projectForm.css";
 
 const body = document.querySelector("body");
 const content = document.getElementById("content");
 const contentHome = document.getElementById("contentHome");
+const projectLabel = document.getElementById("projectLabel");
 const projectsContainer = document.getElementById("projectsContainer");
+
+// Go To The Home For All Projects
+projectLabel.addEventListener("click", () => {
+  events.emit("render");
+});
 // Add Project To The Sidebar and Page Using The Factory Function
 const projectController = (() => {
   const projectList = [];
@@ -66,6 +73,12 @@ const projectController = (() => {
     name.innerText += project.getName();
     elem.title = project.getName();
     colorCircle.classList.add("colorCircle-P");
+
+    // Go To The Project's ToDos
+    elem.addEventListener("click", () => {
+      projectModule();
+    });
+
     // Append Together
     elem.appendChild(colorCircle);
     elem.appendChild(name);
@@ -157,6 +170,10 @@ const projectController = (() => {
     pageProjectContainer.classList.add("pageProjectContainer");
     elem.classList.add("pageProject");
     colorCircle.classList.add("colorCircle-P");
+
+    elem.addEventListener("click", () => {
+      projectModule();
+    });
 
     ellipse.classList.add("ellipse");
     name.innerText += project.getName();

@@ -30,6 +30,28 @@ body {
 }
 /*------------------*/
 
+/* The Sidebar Inbox */
+#sideBarInbox {
+  font-family: "Signika";
+  background-image: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    #2850ff,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 2em;
+  padding-left: 5%;
+  margin-bottom: 30px; /* Place content 60px from the top */
+  margin-top: 30px;
+}
 /* The sidebar menu */
 .sidebar {
   font-family: "Signika";
@@ -41,7 +63,6 @@ body {
   left: 0;
   background-color: #0f172a; /* Blue*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 /* Collapse Classes for Sidebar and Content */
@@ -81,7 +102,8 @@ body {
 }
 #projectLabelContainer > :first-child:hover,
 #sidbarButtonContainer > :hover,
-#projectsContainer > :hover {
+#projectsContainer > :hover,
+#sideBarInbox:hover {
   cursor: pointer;
   opacity: 0.5;
 }

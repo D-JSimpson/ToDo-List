@@ -5,6 +5,7 @@ import "./projectForm.css";
 import { events } from "./pubsub";
 import { createTodo, createProject } from "./todo";
 import displayProjectInputField from "./projectForm";
+import openInbox from "./openInbox";
 
 const body = document.querySelector("body");
 
@@ -15,11 +16,20 @@ const mySidebar = document.createElement("div");
 mySidebar.classList.add("sidebar");
 mySidebar.classList.add("sidebarOpen");
 
+// Inbox Where All The ToDos Will Be Kept
+const sideBarInbox = document.createElement("div");
+sideBarInbox.id = "sideBarInbox";
+sideBarInbox.innerText = "ToDo Inbox";
+sideBarInbox.addEventListener("click", () => {
+  openInbox();
+});
+
 // Projects For the SideBar
 // Label
 const projectLabelContainer = document.createElement("div");
 const projectLabel = document.createElement("span");
 projectLabelContainer.id = "projectLabelContainer";
+projectLabel.id = "projectLabel";
 projectLabel.innerText = "PROJECTS";
 projectLabel.title = "PROJECTS";
 // Buttons For Projects
@@ -92,7 +102,7 @@ navBar.appendChild(sidebarHamburger);
 content.appendChild(contentHome);
 sidbarButtonContainer.append(addProjects, openClose);
 projectLabelContainer.append(projectLabel, sidbarButtonContainer);
-mySidebar.append(projectLabelContainer, projectsContainer);
+mySidebar.append(sideBarInbox, projectLabelContainer, projectsContainer);
 /*---------------*/
 
 require("./projectController");

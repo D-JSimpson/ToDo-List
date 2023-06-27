@@ -1,0 +1,9 @@
+#inbox {
+  width: 100%;
+  height: 121px;
+  font-size: min(92px, 10vw);
+  display: grid;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #d4d4d8;
+}

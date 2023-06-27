@@ -18,6 +18,7 @@ function projectFormSubmission(form) {
   const color = form.elements.colorsSelect.value;
   const newProject = createProject(name, color);
   events.emit("addProjectSidebarOnly", newProject);
+  events.emit("renderSidebar", newProject);
   projectModule(newProject);
 }
 

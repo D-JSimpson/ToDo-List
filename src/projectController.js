@@ -19,13 +19,8 @@ const projectController = (() => {
   const projectList = [];
   let addOperation = "";
   let addLocation = -1;
-  // Rerender All Projects Performing The Correct Operation,
-  // Only Used For Project Options, Otherwise Does Nothing
-  const render = () => {
-    // Remove All Projects From Content Home
-    content.replaceChildren(contentHome);
-    // Remove All Projects From Sidebar
-    projectsContainer.replaceChildren();
+
+  const reOrderProjects = () => {
     // Perform Correct Operation
     // Based On Project Option Pressed
     switch (addOperation) {
@@ -56,6 +51,27 @@ const projectController = (() => {
       default:
         break;
     }
+  };
+  // Rerender All Projects Performing The Correct Operation,
+  // Only Used For Project Options, Otherwise Does Nothing
+  const renderSideBar = () => {
+    // Remove All Projects From Sidebar
+    projectsContainer.replaceChildren();
+    // Reorder All The Projects
+    reOrderProjects();
+    // Then Add Them Back So The Ordering Is Correct
+    projectList.forEach((prjct) => {
+      events.emit("addProjectSidebarOnly", prjct);
+      projectList.pop(); // updateProjectList Will Add Duplicates, So Remove Them
+    });
+  };
+  const render = () => {
+    // Remove All Projects From Content Home
+    content.replaceChildren(contentHome);
+    // Remove All Projects From Sidebar
+    projectsContainer.replaceChildren();
+    // Reorder All The Projects
+    reOrderProjects();
     // Then Add Them Back So The Ordering Is Correct
     // Currently Rerenders When Not Needed: Project Added to End
     projectList.forEach((prjct) => {
@@ -202,5 +218,6 @@ const projectController = (() => {
   events.on("addProject", updateProjectList);
   events.on("addProjectSidebarOnly", addProjectToSideBar);
   events.on("addProjectSidebarOnly", updateProjectList);
+  events.on("renderSidebar", renderSideBar);
   events.on("render", render);
 })();

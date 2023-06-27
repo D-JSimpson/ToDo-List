@@ -2,7 +2,9 @@ export function createProject(name, color) {
   const toDO = [];
   const getName = () => name;
   const getColor = () => color;
-  return { getName, getColor, toDO };
+  const addToDo = (todo) => toDO.push(todo);
+  const getToDo = () => toDO;
+  return { getName, getColor, addToDo, getToDo };
 }
 export function createTodo(task, description, dueDate, priority, notes) {
   const getTask = () => task;

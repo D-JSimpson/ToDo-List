@@ -19,12 +19,39 @@
   margin-top: -300px;
   margin-left: -200px;
   background-color: #fafafa;
-  border-radius: 50px;
+  border-radius: 20px;
   padding-top: 50px;
   padding-left: 40px;
   padding-right: 40px;
   row-gap: 20px;
+  transition: padding 0.3s ease;
 }
+/* Only Push Content If Screen Is Certain Size */
+@media screen and (max-width: 600px), (max-height: 650px) {
+  #projectUserInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #inputContainer {
+    top: 0;
+    left: 0;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media screen and (max-height: 650px) {
+  #colorsSelect {
+    height: 100px;
+  }
+  #addProjectLabel {
+    font-size: 20px !important;
+  }
+}
+
 #addProjectLabel {
   font-size: 48px;
   padding-bottom: 5px;

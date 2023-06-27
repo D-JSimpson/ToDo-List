@@ -22,7 +22,16 @@ body {
 #navBar {
   display: flex;
   align-items: center;
-  background-color: red;
+  background-image: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    #2850ff,
+    green,
+    yellow,
+    orange,
+    red
+  );
   position: fixed;
   width: 100%;
   height: 5vh;

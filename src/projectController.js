@@ -171,6 +171,7 @@ const projectController = (() => {
     elem.classList.add("pageProject");
     colorCircle.classList.add("colorCircle-P");
 
+    // Go To The Project's ToDos
     elem.addEventListener("click", () => {
       projectModule();
     });

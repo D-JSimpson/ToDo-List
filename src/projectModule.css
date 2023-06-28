@@ -1,5 +1,7 @@
 #selectedProject {
   font-size: min(96px, 10vw) !important;
+  display: flex !important;
+  align-items: center;
 }
 #selectedProject,
 .priorityOne,
@@ -26,4 +28,19 @@
 }
 .priorityFour {
   color: #2850ff;
+}
+/* Button To Add Todos */
+#addTodoBtn {
+  margin-left: auto;
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #ffffff;
+  color: #111;
+  border-radius: 10px;
+  height: 40px;
+}
+#addTodoBtn:hover {
+  background-color: #d4d4d8;
+  transition: 0.2s;
+  cursor: pointer;
 }

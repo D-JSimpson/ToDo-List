@@ -1,13 +1,20 @@
 import "./projectModule.css";
+import displayTaskInputField from "./taskForm";
 
 export default function projectModule(project) {
   // Make Space For New Project Todos
   const content = document.querySelector("#content");
   content.replaceChildren();
-  // The Project That Was Clicked/Created
+  // Display The Project That Was Clicked/Created
   const selectedProject = document.createElement("div");
+  const addTodoBtn = document.createElement("button");
+
   selectedProject.id = "selectedProject";
   selectedProject.innerText = project.getName();
+  addTodoBtn.innerText = "\u2795 Add Task";
+  addTodoBtn.id = "addTodoBtn";
+  // Functionality
+  addTodoBtn.addEventListener("click", displayTaskInputField, false);
 
   // Create The Different Priority Levels
   const priorityOne = document.createElement("div");
@@ -26,6 +33,7 @@ export default function projectModule(project) {
   priorityFour.innerText = "Priority 4";
 
   // Append To Show On Page
+  selectedProject.appendChild(addTodoBtn);
   content.append(
     selectedProject,
     priorityOne,

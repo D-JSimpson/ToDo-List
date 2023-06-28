@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Indie+Flower&family=Signika&display=swap");
 /* The Background For The Input Field */
 #taskBackground {
   position: fixed;
@@ -8,22 +9,57 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Signika";
 }
 /* Where Things are Inputed */
 #taskUserInput {
   display: flex;
   flex-direction: column;
-  max-height: min(80%, 600px);
+  height: min(80%, 400px);
   max-width: min(80%, 400px);
   background-color: #fafafa;
   border-radius: 20px;
-  padding-top: 50px;
+  padding-top: 10px;
   padding-left: 40px;
   padding-right: 40px;
   row-gap: 20px;
   transition: padding 0.3s ease;
 }
-
+/* Task Form */
+#taskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  row-gap: 20px;
+}
+/* Task Name Field */
+#taskName {
+  width: 100%;
+  height: 60px;
+  align-self: center;
+  border: none;
+  background-color: #fafafa;
+  font-size: min(36px, 10vw);
+  padding: 0;
+  font-weight: bold;
+}
+#taskName:focus-visible,
+#taskDescription:focus-visible {
+  outline: none;
+}
+/* Task Name Field */
+#taskDescription {
+  width: 100%;
+  height: min(50%, 600px);
+  font-size: min(24px, 10vw);
+  background-color: #fafafa;
+  border: none;
+  padding: 0;
+  resize: none;
+  color: #52525b;
+}
 /* Buttons Container*/
 #saveCancelContainer {
   margin-left: auto;

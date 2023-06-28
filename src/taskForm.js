@@ -16,6 +16,7 @@ export default function displayTaskInputField() {
   const taskUserInput = document.createElement("div");
   const taskForm = document.createElement("form");
   const taskName = document.createElement("input");
+  const taskDescription = document.createElement("textarea");
   const saveCancelContainer = document.createElement("div");
   const cancelBtn = document.createElement("button");
   const saveBtn = document.createElement("button");
@@ -25,6 +26,7 @@ export default function displayTaskInputField() {
   taskUserInput.id = "taskUserInput";
   taskForm.id = "taskForm";
   taskName.id = "taskName";
+  taskDescription.id = "taskDescription";
   saveCancelContainer.id = "saveCancelContainer";
 
   // InnerText And Classes
@@ -38,6 +40,8 @@ export default function displayTaskInputField() {
   taskName.setAttribute("minlength", 1);
   taskName.setAttribute("maxlength", 20);
   taskName.toggleAttribute("required");
+  taskName.setAttribute("placeholder", "Task Name");
+  taskDescription.setAttribute("placeholder", "Description");
   saveBtn.setAttribute("type", "submit");
   saveBtn.setAttribute("form", "taskForm");
 
@@ -70,7 +74,7 @@ export default function displayTaskInputField() {
   });
 
   // Append Everything Together
-  taskForm.appendChild(taskName);
+  taskForm.append(taskName, taskDescription);
   saveCancelContainer.append(cancelBtn, saveBtn);
   taskUserInput.append(taskForm, saveCancelContainer);
   taskBackground.appendChild(taskUserInput);

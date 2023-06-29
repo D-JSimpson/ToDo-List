@@ -1,3 +1,4 @@
+import "./projectModule.scss";
 import "./projectModule.css";
 import displayTaskInputField from "./taskForm";
 
@@ -84,4 +85,5 @@ export default function projectModule(project) {
     trashCan
   );
   priorityOne.appendChild(todo);
+  priorityTwo.appendChild(todo.cloneNode(true));
 }

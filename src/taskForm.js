@@ -17,7 +17,9 @@ export default function displayTaskInputField() {
   const taskForm = document.createElement("form");
   const taskName = document.createElement("input");
   const taskDescription = document.createElement("textarea");
-  const saveCancelContainer = document.createElement("div");
+  const dueDateBtn = document.createElement("input");
+  const selectPriority = document.createElement("select");
+  const taskOptionsContainer = document.createElement("div");
   const cancelBtn = document.createElement("button");
   const saveBtn = document.createElement("button");
 
@@ -27,7 +29,9 @@ export default function displayTaskInputField() {
   taskForm.id = "taskForm";
   taskName.id = "taskName";
   taskDescription.id = "taskDescription";
-  saveCancelContainer.id = "saveCancelContainer";
+  dueDateBtn.id = "dueDate";
+  selectPriority.id = "selectPriority";
+  taskOptionsContainer.id = "taskOptionsContainer";
 
   // InnerText And Classes
   cancelBtn.innerText = "CANCEL";
@@ -42,6 +46,7 @@ export default function displayTaskInputField() {
   taskName.toggleAttribute("required");
   taskName.setAttribute("placeholder", "Task Name");
   taskDescription.setAttribute("placeholder", "Description");
+  dueDateBtn.setAttribute("type", "date");
   saveBtn.setAttribute("type", "submit");
   saveBtn.setAttribute("form", "taskForm");
 
@@ -73,10 +78,27 @@ export default function displayTaskInputField() {
     body.removeChild(taskBackground);
   });
 
+  // Create Priority Options
+  const priorities = [
+    "Priority",
+    "Priority 1",
+    "Priority 2",
+    "Priority 3",
+    "Priority 4",
+  ];
+  priorities.forEach((element) => {
+    const option = document.createElement("option");
+    option.innerText = element;
+    selectPriority.appendChild(option);
+  });
+  // First Child Is Only A Label For The Select
+  const PriorityLabel = Array.from(selectPriority.children)[0];
+  PriorityLabel.toggleAttribute("disabled");
+
   // Append Everything Together
   taskForm.append(taskName, taskDescription);
-  saveCancelContainer.append(cancelBtn, saveBtn);
-  taskUserInput.append(taskForm, saveCancelContainer);
+  taskOptionsContainer.append(dueDateBtn, selectPriority, cancelBtn, saveBtn);
+  taskUserInput.append(taskForm, taskOptionsContainer);
   taskBackground.appendChild(taskUserInput);
   body.appendChild(taskBackground);
 }

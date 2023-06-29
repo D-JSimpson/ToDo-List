@@ -21,6 +21,7 @@
 .priorityFour {
   display: grid;
   grid-template-columns: 1fr;
+  row-gap: 10px;
   height: fit-content;
   font-size: min(64px, 10vw);
   border-top: 1px solid #d4d4d8;
@@ -66,14 +67,14 @@
 }
 .todo:hover {
   height: 65px;
-  box-shadow: 3px 5px 5px #ff0066;
+  box-shadow: 3px 5px 5px #000000;
   width: 100%;
 }
 /*Show Priority color*/
 .priorityColor {
   width: 5px;
   height: 100%;
-  background-color: #ff0066;
+  background-color: #000000;
 }
 /*Checkbox For Todos*/
 .todoCheckbox {
@@ -81,7 +82,7 @@
   width: 18px;
   margin-left: 10px;
   margin-right: 10px;
-  accent-color: #ff0066;
+  accent-color: #000000;
   border: #111;
 }
 @keyframes strikeThrough {
@@ -124,14 +125,14 @@
   width: 100px;
   margin-left: auto;
   background-color: transparent;
-  border: 2px solid #ff0066;
-  color: #ff0066;
+  border: 2px solid #000000;
+  color: #000000;
   font-family: "Signika";
   font-size: min(16px, 10vw);
   font-weight: bold;
 }
 .detailsBtn:hover {
-  background-color: #ff0066;
+  background-color: #000000;
   color: #ffffff;
   cursor: pointer;
   transition: 0.2s;
@@ -144,10 +145,11 @@
   height: fit-content;
   font-size: min(40px, 10vw);
   transition: 0.2s;
+  color: rgb(0, 0, 0);
 }
 .trashCan:hover,
 .editIcon:hover {
-  color: violet;
+  color: rgb(129, 129, 129);
   cursor: pointer;
 }
 .trashCan::before {

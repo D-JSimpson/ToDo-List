@@ -1,7 +1,128 @@
-.priorityTwo {
+/*This File Is To Color The Todos By Priority*/
+/*On Projects Page*/
+/*Instead Of The Default Black*/
+$priorityOne-color: #ff0066;
+$priorityTwo-color: #ffd700;
+$priorityThree-color: rgb(9, 255, 50);
+$priorityFour-color: #2850ff;
+/*Show Priority color*/
+/* Priority 1 */
+.priorityOne {
+  .todo:hover {
+    box-shadow: 3px 5px 5px $priorityOne-color;
+  }
   .todo {
     .priorityColor {
-      background-color: #ffd700;
+      background-color: $priorityOne-color;
+    }
+    .todoCheckbox {
+      accent-color: $priorityOne-color;
+    }
+    .detailsBtn {
+      border: 2px solid $priorityOne-color;
+      color: $priorityOne-color;
+    }
+    .detailsBtn:hover {
+      background-color: $priorityOne-color;
+      color: #ffffff;
+    }
+    .trashCan,
+    .editIcon {
+      color: $priorityOne-color;
+    }
+    .trashCan:hover,
+    .editIcon:hover {
+      color: violet;
+    }
+  }
+}
+/* Priority 2 */
+.priorityTwo {
+  .todo:hover {
+    box-shadow: 3px 5px 5px $priorityTwo-color;
+  }
+  .todo {
+    .priorityColor {
+      background-color: $priorityTwo-color;
+    }
+    .todoCheckbox {
+      accent-color: $priorityTwo-color;
+    }
+    .detailsBtn {
+      border: 2px solid $priorityTwo-color;
+      color: $priorityTwo-color;
+    }
+    .detailsBtn:hover {
+      background-color: $priorityTwo-color;
+      color: #ffffff;
+    }
+    .trashCan,
+    .editIcon {
+      color: $priorityTwo-color;
+    }
+    .trashCan:hover,
+    .editIcon:hover {
+      color: #ff5e00;
+    }
+  }
+}
+/* Priority 3 */
+.priorityThree {
+  .todo:hover {
+    box-shadow: 3px 5px 5px $priorityThree-color;
+  }
+  .todo {
+    .priorityColor {
+      background-color: $priorityThree-color;
+    }
+    .todoCheckbox {
+      accent-color: $priorityThree-color;
+    }
+    .detailsBtn {
+      border: 2px solid $priorityThree-color;
+      color: $priorityThree-color;
+    }
+    .detailsBtn:hover {
+      background-color: $priorityThree-color;
+      color: #ffffff;
+    }
+    .trashCan,
+    .editIcon {
+      color: $priorityThree-color;
+    }
+    .trashCan:hover,
+    .editIcon:hover {
+      color: rgb(0, 116, 14);
+    }
+  }
+}
+/* Priority 4 */
+.priorityFour {
+  .todo:hover {
+    box-shadow: 3px 5px 5px $priorityFour-color;
+  }
+  .todo {
+    .priorityColor {
+      background-color: $priorityFour-color;
+    }
+    .todoCheckbox {
+      accent-color: $priorityFour-color;
+    }
+    .detailsBtn {
+      border: 2px solid $priorityFour-color;
+      color: $priorityFour-color;
+    }
+    .detailsBtn:hover {
+      background-color: $priorityFour-color;
+      color: #ffffff;
+    }
+    .trashCan,
+    .editIcon {
+      color: $priorityFour-color;
+    }
+    .trashCan:hover,
+    .editIcon:hover {
+      color: #8c28ff;
     }
   }
 }

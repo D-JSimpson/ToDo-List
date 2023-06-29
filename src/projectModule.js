@@ -86,4 +86,12 @@ export default function projectModule(project) {
   );
   priorityOne.appendChild(todo);
   priorityTwo.appendChild(todo.cloneNode(true));
+  priorityThree.appendChild(todo.cloneNode(true));
+  priorityFour.appendChild(todo.cloneNode(true));
+  priorityTwo.appendChild(todo.cloneNode(true));
+  priorityThree.appendChild(todo.cloneNode(true));
+  priorityFour.appendChild(todo.cloneNode(true));
+  priorityTwo.appendChild(todo.cloneNode(true));
+  priorityThree.appendChild(todo.cloneNode(true));
+  priorityFour.appendChild(todo.cloneNode(true));
 }

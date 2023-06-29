@@ -59,7 +59,8 @@ export default function projectModule(project) {
   detailsBtn.classList.add("detailsBtn");
   trashCan.classList.add("trashCan");
   editIcon.classList.add("editIcon");
-  taskName.innerText = "Study";
+  taskName.innerText =
+    "StudyStudyStudyStudyStudyStudyStudyStudyStudyStudyStudy";
   detailsBtn.innerText = "DETAILS";
 
   // Funtionality

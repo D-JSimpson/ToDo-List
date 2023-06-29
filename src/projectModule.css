@@ -61,6 +61,13 @@
   background-color: #f4f4f5;
   height: 60px;
   padding-right: 20px;
+  justify-self: center;
+  width: 95%;
+}
+.todo:hover {
+  height: 65px;
+  box-shadow: 3px 5px 5px #ff0066;
+  width: 100%;
 }
 /*Show Priority color*/
 .priorityColor {
@@ -107,6 +114,10 @@
   font-size: min(24px, 10vw);
   color: #111;
   transition: color 0.2s;
+  width: auto;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .detailsBtn {
   height: 35px;
@@ -148,4 +159,15 @@
 .trashCanChecked,
 .editIconChecked {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 800px) {
+  .taskName {
+    max-width: 300px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .taskName {
+    max-width: 150px;
+  }
 }

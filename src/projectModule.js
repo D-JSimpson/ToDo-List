@@ -41,4 +41,39 @@ export default function projectModule(project) {
     priorityThree,
     priorityFour
   );
+
+  // The ToDos For The Project
+  const todo = document.createElement("div");
+  const priorityColor = document.createElement("span");
+  const todoCheckbox = document.createElement("input");
+  const taskName = document.createElement("label");
+  const detailsBtn = document.createElement("button");
+  const trashCan = document.createElement("span");
+  const editIcon = document.createElement("span");
+
+  // Classes and Innertext
+  todo.classList.add("todo");
+  priorityColor.classList.add("priorityColor");
+  todoCheckbox.classList.add("todoCheckbox");
+  taskName.classList.add("taskName");
+  detailsBtn.classList.add("detailsBtn");
+  trashCan.classList.add("trashCan");
+  editIcon.classList.add("editIcon");
+  taskName.innerText = "Study";
+  detailsBtn.innerText = "DETAILS";
+
+  // Funtionality
+  todoCheckbox.setAttribute("type", "checkbox");
+  todoCheckbox.setAttribute("name", "checkbox");
+  taskName.setAttribute("for", "checkbox");
+
+  todo.append(
+    priorityColor,
+    todoCheckbox,
+    taskName,
+    detailsBtn,
+    editIcon,
+    trashCan
+  );
+  priorityOne.appendChild(todo);
 }

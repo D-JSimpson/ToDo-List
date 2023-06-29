@@ -1,7 +1,8 @@
 #selectedProject {
-  font-size: min(96px, 10vw) !important;
-  display: flex !important;
+  font-size: min(96px, 10vw);
+  display: flex;
   align-items: center;
+  border-top: none;
 }
 #selectedProject,
 .priorityOne,
@@ -10,11 +11,19 @@
 .priorityFour {
   width: 100%;
   height: 121px;
-  font-size: min(64px, 10vw);
-  display: grid;
   margin-top: 30px;
   margin-bottom: 30px;
-  border-bottom: 1px solid #d4d4d8;
+}
+/* Styling For Where The Todos Will Go */
+.priorityOne,
+.priorityTwo,
+.priorityThree,
+.priorityFour {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: fit-content;
+  font-size: min(64px, 10vw);
+  border-top: 1px solid #d4d4d8;
 }
 /* Color The Priorities, More Red, More Urgent */
 .priorityOne {
@@ -43,4 +52,65 @@
   background-color: #d4d4d8;
   transition: 0.2s;
   cursor: pointer;
+}
+/*All Todos*/
+.todo {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  background-color: #f4f4f5;
+  height: 60px;
+  padding-right: 20px;
+}
+/*Show Priority color*/
+.priorityColor {
+  width: 5px;
+  height: 100%;
+  background-color: #ff0066;
+}
+/*Checkbox For Todos*/
+.todoCheckbox {
+  height: 18px;
+  width: 18px;
+  margin-left: 10px;
+  margin-right: 10px;
+  accent-color: #ff0066;
+  border: #111;
+}
+.taskName {
+  font-size: min(24px, 10vw);
+  color: #111;
+}
+.detailsBtn {
+  height: 35px;
+  width: 100px;
+  margin-left: auto;
+  background-color: transparent;
+  border: 2px solid #ff0066;
+  color: #ff0066;
+  font-family: "Signika";
+  font-size: min(16px, 10vw);
+  font-weight: bold;
+}
+.detailsBtn:hover {
+  background-color: #ff0066;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.trashCan,
+.editIcon {
+  height: fit-content;
+  font-size: min(40px, 10vw);
+}
+.trashCan:hover,
+.editIcon:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.trashCan::before {
+  content: "\01F5D1";
+}
+.editIcon::before {
+  content: "\01F589";
 }

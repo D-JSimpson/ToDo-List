@@ -6,7 +6,7 @@ export default function projectModule(project) {
   const content = document.querySelector("#content");
   content.replaceChildren();
   // Display The Project That Was Clicked/Created
-  const selectedProject = document.createElement("div");
+  const selectedProject = document.createElement("h1");
   const addTodoBtn = document.createElement("button");
 
   selectedProject.id = "selectedProject";
@@ -43,7 +43,7 @@ export default function projectModule(project) {
   );
 
   // The ToDos For The Project
-  const todo = document.createElement("div");
+  const todo = document.createElement("section");
   const priorityColor = document.createElement("span");
   const todoCheckbox = document.createElement("input");
   const taskName = document.createElement("label");

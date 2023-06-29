@@ -10,9 +10,9 @@ import openInbox from "./openInbox";
 const body = document.querySelector("body");
 
 // Bars
-const navBar = document.createElement("div");
+const navBar = document.createElement("header");
 navBar.id = "navBar";
-const mySidebar = document.createElement("div");
+const mySidebar = document.createElement("nav");
 mySidebar.classList.add("sidebar");
 mySidebar.classList.add("sidebarOpen");
 
@@ -27,7 +27,7 @@ sideBarInbox.addEventListener("click", () => {
 
 // Projects For the SideBar
 // Label
-const projectLabelContainer = document.createElement("div");
+const projectLabelContainer = document.createElement("section");
 const projectLabel = document.createElement("span");
 projectLabelContainer.id = "projectLabelContainer";
 projectLabel.id = "projectLabel";
@@ -47,8 +47,8 @@ openClose.title = "TOGGLE PROJECT LIST";
 addProjects.addEventListener("click", displayProjectInputField, false);
 
 // Dummy content for site
-const content = document.createElement("div");
-const contentHome = document.createElement("div");
+const content = document.createElement("main");
+const contentHome = document.createElement("h1");
 const homeAddProjectBtn = document.createElement("button");
 // ID's and InnerText
 content.id = "content";

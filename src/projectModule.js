@@ -67,6 +67,13 @@ export default function projectModule(project) {
   todoCheckbox.setAttribute("name", "checkbox");
   taskName.setAttribute("for", "checkbox");
 
+  todoCheckbox.addEventListener("click", () => {
+    taskName.classList.toggle("strikeThrough");
+    detailsBtn.classList.toggle("detailsBtnChecked");
+    trashCan.classList.toggle("trashCanChecked");
+    editIcon.classList.toggle("editIconChecked");
+  });
+
   todo.append(
     priorityColor,
     todoCheckbox,

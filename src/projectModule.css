@@ -77,9 +77,36 @@
   accent-color: #ff0066;
   border: #111;
 }
+@keyframes strikeThrough {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.strikeThrough {
+  position: relative;
+  color: #d4d4d8 !important;
+}
+.strikeThrough::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: black;
+  animation-name: strikeThrough;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
 .taskName {
   font-size: min(24px, 10vw);
   color: #111;
+  transition: color 0.2s;
 }
 .detailsBtn {
   height: 35px;
@@ -98,14 +125,18 @@
   cursor: pointer;
   transition: 0.2s;
 }
+.detailsBtnChecked {
+  opacity: 0.5;
+}
 .trashCan,
 .editIcon {
   height: fit-content;
   font-size: min(40px, 10vw);
+  transition: 0.2s;
 }
 .trashCan:hover,
 .editIcon:hover {
-  opacity: 0.5;
+  color: violet;
   cursor: pointer;
 }
 .trashCan::before {
@@ -113,4 +144,8 @@
 }
 .editIcon::before {
   content: "\01F589";
+}
+.trashCanChecked,
+.editIconChecked {
+  opacity: 0.5;
 }

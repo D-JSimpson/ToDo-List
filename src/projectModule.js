@@ -67,7 +67,9 @@ function displayDetails(toDo) {
   body.appendChild(taskBackground);
 }
 
-function makeTodo(toDo) {
+function editTodo(priority, toDo) {}
+
+function makeTodo(project, toDo) {
   // The ToDos For The Project
   const todo = document.createElement("section");
   const priorityColor = document.createElement("span");
@@ -117,6 +119,10 @@ function makeTodo(toDo) {
 
   detailsBtn.addEventListener("click", () => {
     displayDetails(toDo);
+  });
+
+  editIcon.addEventListener("click", () => {
+    displayTaskInputField(project, toDo);
   });
 
   // Append
@@ -183,19 +189,19 @@ export default function projectModule(project) {
     switch (priority) {
       case "1":
       case "Priority 1":
-        priorityOne.appendChild(makeTodo(todo));
+        priorityOne.append(makeTodo(project, todo));
         break;
       case "2":
       case "Priority 2":
-        priorityTwo.appendChild(makeTodo(todo));
+        priorityTwo.append(makeTodo(project, todo));
         break;
       case "3":
       case "Priority 3":
-        priorityThree.appendChild(makeTodo(todo));
+        priorityThree.append(makeTodo(project, todo));
         break;
       case "4":
       case "Priority 4":
-        priorityFour.appendChild(makeTodo(todo));
+        priorityFour.append(makeTodo(project, todo));
         break;
       default:
         break;

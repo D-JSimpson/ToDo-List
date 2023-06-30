@@ -31,7 +31,7 @@ function taskFormSubmission(taskForm, project) {
   events.emit("addTodoToProject", project);
 }
 
-export default function displayTaskInputField(project) {
+export default function displayTaskInputField(project, toDo) {
   // Create Necessary Elements
   const taskBackground = document.createElement("div");
   const taskUserInput = document.createElement("div");
@@ -110,11 +110,22 @@ export default function displayTaskInputField(project) {
   priorities.forEach((element) => {
     const option = document.createElement("option");
     option.innerText = element;
+    option.value = element;
     selectPriority.appendChild(option);
   });
   // First Child Is Only A Label For The Select
   const PriorityLabel = Array.from(selectPriority.children)[0];
   PriorityLabel.toggleAttribute("disabled");
+
+  // This Part Of The Function Is For Editing Todos
+  // toDo will undefined when called by addTodoBtn
+  // But not when called by editIcon
+  if (toDo !== undefined) {
+    taskName.value = toDo.getTask();
+    taskDescription.value = toDo.getDescription();
+    dueDateBtn.value = toDo.getDueDate();
+    selectPriority.value = toDo.getPriority();
+  }
 
   // Append Everything Together
   taskForm.append(taskName, taskDescription, taskOptionsContainer);

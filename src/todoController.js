@@ -10,6 +10,13 @@ const todoController = (() => {
   const updateTodoList = (todo) => {
     if (todo instanceof createTodo) todoList.push(todo);
   };
+  const getTodoList = () => {
+    console.log(todoList);
+  };
   events.on("addTodoToProject", updateTodo);
   events.on("addTodo", updateTodoList);
+
+  return { getTodoList };
 })();
+
+todoController.getTodoList();

@@ -113,13 +113,23 @@ const projectHome = createProject("Home", "#DC143C");
 const projectWork = createProject("Work", "#00FF00");
 const projectEducation = createProject("Education", "#FFD700");
 
-let todo = createTodo("Study", "Now", "2023-01-10", "1");
+let todo = createTodo("Study", "Now", "2023-01-10", "Priority 1");
 projectHome.addToDo(todo);
-todo = createTodo("Walk", "Gotta Exercise", "2023-02-28", "2");
+todo = createTodo("Walk", "Gotta Exercise", "2023-02-28", "Priority 2");
 projectHome.addToDo(todo);
-todo = createTodo("Dinner", "Make Dinner For Parents", "2023-04-21", "3");
+todo = createTodo(
+  "Dinner",
+  "Make Dinner For Parents",
+  "2023-04-21",
+  "Priority 3"
+);
 projectHome.addToDo(todo);
-todo = createTodo("Job Hunt", "Send Out Applications", "2024-04-19", "4");
+todo = createTodo(
+  "Job Hunt",
+  "Send Out Applications",
+  "2024-04-19",
+  "Priority 4"
+);
 projectHome.addToDo(todo);
 
 events.emit("addProject", projectHome);

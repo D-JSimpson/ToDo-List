@@ -67,8 +67,6 @@ function displayDetails(toDo) {
   body.appendChild(taskBackground);
 }
 
-function editTodo(priority, toDo) {}
-
 function makeTodo(project, toDo) {
   // The ToDos For The Project
   const todo = document.createElement("section");

@@ -19,7 +19,7 @@ function displayDetails(toDo) {
   const taskInfo = document.createElement("ul");
   const closeIcon = document.createElement("span");
   const taskName = document.createElement("li");
-  const dueDate = document.createElement("li");
+  const dueDateEl = document.createElement("li");
   const priority = document.createElement("li");
   const taskDescription = document.createElement("li");
 
@@ -28,9 +28,20 @@ function displayDetails(toDo) {
   taskInfo.id = "taskInfo";
   closeIcon.id = "closeIcon";
 
+  // Get The Due Date Of The Todo
+  // Then Set It Up To Be Formated By dates-fns
+  let dueDate = toDo.getDueDate();
+  const year = dueDate.substring(0, dueDate.indexOf("-"));
+  const day = dueDate.substring(dueDate.lastIndexOf("-") + 1);
+  const month =
+    parseInt(
+      dueDate.substring(dueDate.indexOf("-") + 1, dueDate.lastIndexOf("-")),
+      10
+    ) - 1; // Subtract 1 for dates-fns format
+  dueDate = format(new Date(year, month, day), "MMM d yyyy");
   // Assign Task Information
   taskName.innerText = `Task: ${toDo.getTask()}`;
-  dueDate.innerText = `Due Date: ${toDo.getDueDate()}`;
+  dueDateEl.innerText = `Due Date: ${dueDate}`;
   priority.innerText = `Priority: ${toDo.getPriority()}`;
   taskDescription.innerText = `Description: ${toDo.getDescription()}`;
 
@@ -49,7 +60,7 @@ function displayDetails(toDo) {
     body.removeChild(taskBackground);
   });
 
-  taskInfo.append(closeIcon, taskName, dueDate, priority, taskDescription);
+  taskInfo.append(closeIcon, taskName, dueDateEl, priority, taskDescription);
   taskBackground.appendChild(taskInfo);
   body.appendChild(taskBackground);
 }

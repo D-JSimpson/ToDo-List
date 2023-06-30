@@ -26,6 +26,9 @@ $priorityFour-color: #2850ff;
       background-color: $priorityOne-color;
       color: #ffffff;
     }
+    .dueDateEl {
+      color: $priorityOne-color;
+    }
     .trashCan,
     .editIcon {
       color: $priorityOne-color;
@@ -55,6 +58,9 @@ $priorityFour-color: #2850ff;
     .detailsBtn:hover {
       background-color: $priorityTwo-color;
       color: #ffffff;
+    }
+    .dueDateEl {
+      color: $priorityTwo-color;
     }
     .trashCan,
     .editIcon {
@@ -86,6 +92,9 @@ $priorityFour-color: #2850ff;
       background-color: $priorityThree-color;
       color: #ffffff;
     }
+    .dueDateEl {
+      color: $priorityThree-color;
+    }
     .trashCan,
     .editIcon {
       color: $priorityThree-color;
@@ -115,6 +124,9 @@ $priorityFour-color: #2850ff;
     .detailsBtn:hover {
       background-color: $priorityFour-color;
       color: #ffffff;
+    }
+    .dueDateEl {
+      color: $priorityFour-color;
     }
     .trashCan,
     .editIcon {

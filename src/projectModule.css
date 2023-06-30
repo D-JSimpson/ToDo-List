@@ -140,6 +140,10 @@
 .detailsBtnChecked {
   opacity: 0.5;
 }
+.dueDateEl {
+  font-size: min(18px, 10vw);
+  color: #000000;
+}
 .trashCan,
 .editIcon {
   height: fit-content;

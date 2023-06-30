@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import "./projectModule.scss";
 import "./projectModule.css";
 import displayTaskInputField from "./taskForm";
@@ -9,6 +10,7 @@ function makeTodo(toDo) {
   const todoCheckbox = document.createElement("input");
   const taskName = document.createElement("label");
   const detailsBtn = document.createElement("button");
+  const dueDateEl = document.createElement("span");
   const trashCan = document.createElement("span");
   const editIcon = document.createElement("span");
 
@@ -18,10 +20,23 @@ function makeTodo(toDo) {
   todoCheckbox.classList.add("todoCheckbox");
   taskName.classList.add("taskName");
   detailsBtn.classList.add("detailsBtn");
+  dueDateEl.classList.add("dueDateEl");
   trashCan.classList.add("trashCan");
   editIcon.classList.add("editIcon");
   taskName.innerText = toDo.getTask();
   detailsBtn.innerText = "DETAILS";
+
+  // Get The Due Date Of The Todo
+  // Then Set It Up To Be Formated By dates-fns
+  const dueDate = toDo.getDueDate();
+  const year = dueDate.substring(0, dueDate.indexOf("-"));
+  const day = dueDate.substring(dueDate.lastIndexOf("-") + 1);
+  const month =
+    parseInt(
+      dueDate.substring(dueDate.indexOf("-") + 1, dueDate.lastIndexOf("-")),
+      10
+    ) - 1; // Subtract 1 for dates-fns format
+  dueDateEl.innerText = format(new Date(year, month, day), "MMM d");
 
   // Funtionality
   todoCheckbox.setAttribute("type", "checkbox");
@@ -41,6 +56,7 @@ function makeTodo(toDo) {
     todoCheckbox,
     taskName,
     detailsBtn,
+    dueDateEl,
     editIcon,
     trashCan
   );

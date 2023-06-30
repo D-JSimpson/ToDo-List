@@ -1,4 +1,5 @@
 import "./taskForm.css";
+import { createTodo } from "./todo";
 
 const body = document.querySelector("body");
 
@@ -10,7 +11,22 @@ function removeTaskInputField(taskBackground) {
   body.removeChild(newElement);
 }
 
-export default function displayTaskInputField() {
+// Handles When the User Submits the Project Form
+function taskFormSubmission(taskForm, project) {
+  const taskName = taskForm.elements.taskName.value;
+  const taskDescription = taskForm.elements.taskDescription.value;
+  const dueDate = taskForm.elements.dueDate.value;
+  const selectPriority = taskForm.elements.selectPriority.value;
+  const newTodo = createTodo(
+    taskName,
+    taskDescription,
+    dueDate,
+    selectPriority
+  );
+  project.addToDo(newTodo);
+}
+
+export default function displayTaskInputField(project) {
   // Create Necessary Elements
   const taskBackground = document.createElement("div");
   const taskUserInput = document.createElement("div");
@@ -65,7 +81,7 @@ export default function displayTaskInputField() {
   // When Form Submitted
   taskForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Unsure If Needed, But prevents Webpack Reloading The Page
-    // projectFormSubmission(taskForm);
+    taskFormSubmission(taskForm, project);
     removeTaskInputField(taskBackground);
   });
   // Checks If User Clicks Out Of Project Form
@@ -96,9 +112,9 @@ export default function displayTaskInputField() {
   PriorityLabel.toggleAttribute("disabled");
 
   // Append Everything Together
-  taskForm.append(taskName, taskDescription);
+  taskForm.append(taskName, taskDescription, taskOptionsContainer);
   taskOptionsContainer.append(dueDateBtn, selectPriority, cancelBtn, saveBtn);
-  taskUserInput.append(taskForm, taskOptionsContainer);
+  taskUserInput.appendChild(taskForm);
   taskBackground.appendChild(taskUserInput);
   body.appendChild(taskBackground);
 }

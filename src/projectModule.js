@@ -15,7 +15,9 @@ export default function projectModule(project) {
   addTodoBtn.innerText = "\u2795 Add Task";
   addTodoBtn.id = "addTodoBtn";
   // Functionality
-  addTodoBtn.addEventListener("click", displayTaskInputField, false);
+  addTodoBtn.addEventListener("click", () => {
+    displayTaskInputField(project);
+  });
 
   // Create The Different Priority Levels
   const priorityOne = document.createElement("div");

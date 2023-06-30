@@ -15,7 +15,7 @@ function removeTaskInputField(taskBackground) {
 }
 
 // Handles When the User Submits the Project Form
-function taskFormSubmission(taskForm, project) {
+function taskFormSubmission(taskForm, project, toDo) {
   const taskName = taskForm.elements.taskName.value;
   const taskDescription = taskForm.elements.taskDescription.value;
   const dueDate = taskForm.elements.dueDate.value;
@@ -26,6 +26,13 @@ function taskFormSubmission(taskForm, project) {
     dueDate,
     selectPriority
   );
+  // This Part Of The Function Is For Editing Todos
+  // toDo will undefined when called by addTodoBtn
+  // But not when called by editIcon
+  if (toDo !== undefined) {
+    project.removeToDo(toDo);
+  }
+  // Link And Update
   project.addToDo(newTodo);
   events.emit("addTodo", newTodo);
   events.emit("updateTodo", project);
@@ -86,7 +93,7 @@ export default function displayTaskInputField(project, toDo) {
   // When Form Submitted
   taskForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Unsure If Needed, But prevents Webpack Reloading The Page
-    taskFormSubmission(taskForm, project);
+    taskFormSubmission(taskForm, project, toDo);
     removeTaskInputField(taskBackground);
   });
   // Checks If User Clicks Out Of Project Form

@@ -3,6 +3,32 @@ import "./projectModule.scss";
 import "./projectModule.css";
 import displayTaskInputField from "./taskForm";
 
+const body = document.querySelector("body");
+
+function displayDetails(toDo) {
+  // Create Necessary Elements
+  const taskBackground = document.createElement("div");
+  const taskInfo = document.createElement("ul");
+  const taskName = document.createElement("li");
+  const dueDate = document.createElement("li");
+  const priority = document.createElement("li");
+  const taskDescription = document.createElement("li");
+
+  // Give Them IDs
+  taskBackground.id = "taskBackground";
+  taskInfo.id = "taskInfo";
+
+  // Assign Task Information
+  taskName.innerText = `Task: ${toDo.getTask()}`;
+  dueDate.innerText = `Due Date: ${toDo.getDueDate()}`;
+  priority.innerText = `Priority: ${toDo.getPriority()}`;
+  taskDescription.innerText = `Description: ${toDo.getDescription()}`;
+
+  taskInfo.append(taskName, dueDate, priority, taskDescription);
+  taskBackground.appendChild(taskInfo);
+  body.appendChild(taskBackground);
+}
+
 function makeTodo(toDo) {
   // The ToDos For The Project
   const todo = document.createElement("section");
@@ -43,11 +69,16 @@ function makeTodo(toDo) {
   todoCheckbox.setAttribute("name", "checkbox");
   taskName.setAttribute("for", "checkbox");
 
+  // Marking A Todo As Done
   todoCheckbox.addEventListener("click", () => {
     taskName.classList.toggle("strikeThrough");
     detailsBtn.classList.toggle("detailsBtnChecked");
     trashCan.classList.toggle("trashCanChecked");
     editIcon.classList.toggle("editIconChecked");
+  });
+
+  detailsBtn.addEventListener("click", () => {
+    displayDetails(toDo);
   });
 
   // Append

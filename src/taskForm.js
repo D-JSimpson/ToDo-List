@@ -1,5 +1,8 @@
+import { events } from "./pubsub";
 import "./taskForm.css";
 import { createTodo } from "./todo";
+
+require("./todoController");
 
 const body = document.querySelector("body");
 
@@ -24,6 +27,8 @@ function taskFormSubmission(taskForm, project) {
     selectPriority
   );
   project.addToDo(newTodo);
+  events.emit("addTodo", newTodo);
+  events.emit("addTodoToProject", project);
 }
 
 export default function displayTaskInputField(project) {

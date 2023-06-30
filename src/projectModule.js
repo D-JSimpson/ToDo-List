@@ -97,15 +97,19 @@ export default function projectModule(project) {
     const priority = todo.getPriority();
     switch (priority) {
       case "1":
+      case "Priority 1":
         priorityOne.appendChild(makeTodo(todo));
         break;
       case "2":
+      case "Priority 2":
         priorityTwo.appendChild(makeTodo(todo));
         break;
       case "3":
+      case "Priority 3":
         priorityThree.appendChild(makeTodo(todo));
         break;
       case "4":
+      case "Priority 4":
         priorityFour.appendChild(makeTodo(todo));
         break;
       default:

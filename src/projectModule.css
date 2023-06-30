@@ -64,6 +64,8 @@
   padding-right: 20px;
   justify-self: center;
   width: 95%;
+  transition: width 0.2s;
+  transition: box-shadow 0.2s;
 }
 .todo:hover {
   height: 65px;
@@ -165,6 +167,21 @@
 .trashCanChecked,
 .editIconChecked {
   opacity: 0.5;
+}
+
+/* For The Display Of A Todos Details */
+#taskInfo {
+  display: flex;
+  flex-direction: column;
+  height: min(80%, 400px);
+  max-width: min(80%, 600px);
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  row-gap: 20px;
+  transition: padding 0.3s ease;
 }
 
 @media screen and (max-width: 800px) {

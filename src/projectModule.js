@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import "./projectModule.scss";
 import "./projectModule.css";
 import displayTaskInputField from "./taskForm";
+import { events } from "./pubsub";
 
 const body = document.querySelector("body");
 
@@ -115,12 +116,23 @@ function makeTodo(project, toDo) {
     editIcon.classList.toggle("editIconChecked");
   });
 
+  // Display Details Of The Todo
   detailsBtn.addEventListener("click", () => {
     displayDetails(toDo);
   });
 
+  // Edit The Todo Information
+  // displayTaskInputField() has two parameters
+  // If it is passed a todo it will display its information
   editIcon.addEventListener("click", () => {
     displayTaskInputField(project, toDo);
+  });
+
+  // Delete The Todo From The Project
+  // Then Update Page
+  trashCan.addEventListener("click", () => {
+    project.removeToDo(toDo);
+    events.emit("updateTodo", project);
   });
 
   // Append

@@ -4,7 +4,11 @@ export function createProject(name, color) {
   const getColor = () => color;
   const addToDo = (todo) => toDO.push(todo);
   const getToDo = () => toDO;
-  return { getName, getColor, addToDo, getToDo };
+  const removeToDo = (todo) => {
+    const location = toDO.indexOf(todo);
+    toDO.splice(location, 1);
+  };
+  return { getName, getColor, addToDo, getToDo, removeToDo };
 }
 export function createTodo(task, description, dueDate, priority) {
   const getTask = () => task;

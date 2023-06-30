@@ -13,7 +13,7 @@ const todoController = (() => {
   const getTodoList = () => {
     console.log(todoList);
   };
-  events.on("addTodoToProject", updateTodo);
+  events.on("updateTodo", updateTodo);
   events.on("addTodo", updateTodoList);
 
   return { getTodoList };

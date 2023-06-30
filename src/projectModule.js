@@ -5,6 +5,14 @@ import displayTaskInputField from "./taskForm";
 
 const body = document.querySelector("body");
 
+// Delete Form Made By displayDetails() When Needed
+function removeDetails(taskBackground) {
+  // Clone Node To Remove Event Listeners Then Remove
+  const newElement = taskBackground.cloneNode(true);
+  body.replaceChild(newElement, taskBackground);
+  body.removeChild(newElement);
+}
+
 function displayDetails(toDo) {
   // Create Necessary Elements
   const taskBackground = document.createElement("div");
@@ -23,6 +31,13 @@ function displayDetails(toDo) {
   dueDate.innerText = `Due Date: ${toDo.getDueDate()}`;
   priority.innerText = `Priority: ${toDo.getPriority()}`;
   taskDescription.innerText = `Description: ${toDo.getDescription()}`;
+
+  // Functionality
+  // Checks If User Clicks Out Of Project Form
+  taskBackground.addEventListener("click", (event) => {
+    const withinBoundaries = event.composedPath().includes(taskInfo);
+    if (!withinBoundaries) removeDetails(taskBackground);
+  });
 
   taskInfo.append(taskName, dueDate, priority, taskDescription);
   taskBackground.appendChild(taskInfo);

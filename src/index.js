@@ -112,6 +112,16 @@ require("./projectController");
 const projectHome = createProject("Home", "#DC143C");
 const projectWork = createProject("Work", "#00FF00");
 const projectEducation = createProject("Education", "#FFD700");
+
+let todo = createTodo("Study", "Now", "1/10/2023", "1");
+projectHome.addToDo(todo);
+todo = createTodo("Walk", "Gotta Exercise", "2/28/2023", "2");
+projectHome.addToDo(todo);
+todo = createTodo("Dinner", "Make Dinner For Parents", "4/21/2023", "3");
+projectHome.addToDo(todo);
+todo = createTodo("Job Hunt", "Send Out Applications", "4/19/2024", "4");
+projectHome.addToDo(todo);
+
 events.emit("addProject", projectHome);
 events.emit("addProject", projectWork);
 events.emit("addProject", projectEducation);

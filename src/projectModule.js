@@ -2,6 +2,52 @@ import "./projectModule.scss";
 import "./projectModule.css";
 import displayTaskInputField from "./taskForm";
 
+function makeTodo(toDo) {
+  // The ToDos For The Project
+  const todo = document.createElement("section");
+  const priorityColor = document.createElement("span");
+  const todoCheckbox = document.createElement("input");
+  const taskName = document.createElement("label");
+  const detailsBtn = document.createElement("button");
+  const trashCan = document.createElement("span");
+  const editIcon = document.createElement("span");
+
+  // Classes and Innertext
+  todo.classList.add("todo");
+  priorityColor.classList.add("priorityColor");
+  todoCheckbox.classList.add("todoCheckbox");
+  taskName.classList.add("taskName");
+  detailsBtn.classList.add("detailsBtn");
+  trashCan.classList.add("trashCan");
+  editIcon.classList.add("editIcon");
+  taskName.innerText = toDo.getTask();
+  detailsBtn.innerText = "DETAILS";
+
+  // Funtionality
+  todoCheckbox.setAttribute("type", "checkbox");
+  todoCheckbox.setAttribute("name", "checkbox");
+  taskName.setAttribute("for", "checkbox");
+
+  todoCheckbox.addEventListener("click", () => {
+    taskName.classList.toggle("strikeThrough");
+    detailsBtn.classList.toggle("detailsBtnChecked");
+    trashCan.classList.toggle("trashCanChecked");
+    editIcon.classList.toggle("editIconChecked");
+  });
+
+  // Append
+  todo.append(
+    priorityColor,
+    todoCheckbox,
+    taskName,
+    detailsBtn,
+    editIcon,
+    trashCan
+  );
+
+  return todo;
+}
+
 export default function projectModule(project) {
   // Make Space For New Project Todos
   const content = document.querySelector("#content");
@@ -45,55 +91,25 @@ export default function projectModule(project) {
     priorityFour
   );
 
-  // The ToDos For The Project
-  const todo = document.createElement("section");
-  const priorityColor = document.createElement("span");
-  const todoCheckbox = document.createElement("input");
-  const taskName = document.createElement("label");
-  const detailsBtn = document.createElement("button");
-  const trashCan = document.createElement("span");
-  const editIcon = document.createElement("span");
+  const todoList = project.getToDo();
 
-  // Classes and Innertext
-  todo.classList.add("todo");
-  priorityColor.classList.add("priorityColor");
-  todoCheckbox.classList.add("todoCheckbox");
-  taskName.classList.add("taskName");
-  detailsBtn.classList.add("detailsBtn");
-  trashCan.classList.add("trashCan");
-  editIcon.classList.add("editIcon");
-  taskName.innerText =
-    "StudyStudyStudyStudyStudyStudyStudyStudyStudyStudyStudy";
-  detailsBtn.innerText = "DETAILS";
-
-  // Funtionality
-  todoCheckbox.setAttribute("type", "checkbox");
-  todoCheckbox.setAttribute("name", "checkbox");
-  taskName.setAttribute("for", "checkbox");
-
-  todoCheckbox.addEventListener("click", () => {
-    taskName.classList.toggle("strikeThrough");
-    detailsBtn.classList.toggle("detailsBtnChecked");
-    trashCan.classList.toggle("trashCanChecked");
-    editIcon.classList.toggle("editIconChecked");
+  todoList.forEach((todo) => {
+    const priority = todo.getPriority();
+    switch (priority) {
+      case "1":
+        priorityOne.appendChild(makeTodo(todo));
+        break;
+      case "2":
+        priorityTwo.appendChild(makeTodo(todo));
+        break;
+      case "3":
+        priorityThree.appendChild(makeTodo(todo));
+        break;
+      case "4":
+        priorityFour.appendChild(makeTodo(todo));
+        break;
+      default:
+        break;
+    }
   });
-
-  todo.append(
-    priorityColor,
-    todoCheckbox,
-    taskName,
-    detailsBtn,
-    editIcon,
-    trashCan
-  );
-  priorityOne.appendChild(todo);
-  priorityTwo.appendChild(todo.cloneNode(true));
-  priorityThree.appendChild(todo.cloneNode(true));
-  priorityFour.appendChild(todo.cloneNode(true));
-  priorityTwo.appendChild(todo.cloneNode(true));
-  priorityThree.appendChild(todo.cloneNode(true));
-  priorityFour.appendChild(todo.cloneNode(true));
-  priorityTwo.appendChild(todo.cloneNode(true));
-  priorityThree.appendChild(todo.cloneNode(true));
-  priorityFour.appendChild(todo.cloneNode(true));
 }

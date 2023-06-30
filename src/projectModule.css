@@ -174,7 +174,7 @@
   display: flex;
   flex-direction: column;
   height: min(80%, 400px);
-  max-width: min(80%, 600px);
+  width: min(80%, 600px);
   background-color: #fafafa;
   border-radius: 20px;
   padding-top: 10px;
@@ -186,10 +186,18 @@
 #closeIcon {
   margin-left: auto;
   width: fit-content;
+  font-size: 2em;
 }
 #closeIcon:hover {
   cursor: pointer;
   color: red;
+}
+
+#taskInfo li {
+  list-style: none;
+}
+#taskDetailsName {
+  font-size: 2em;
 }
 
 @media screen and (max-width: 800px) {
@@ -200,5 +208,11 @@
 @media screen and (max-width: 600px) {
   .taskName {
     max-width: 150px;
+  }
+
+  #taskInfo {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

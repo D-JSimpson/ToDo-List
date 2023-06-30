@@ -17,7 +17,7 @@ function displayDetails(toDo) {
   // Create Necessary Elements
   const taskBackground = document.createElement("div");
   const taskInfo = document.createElement("ul");
-  const closeIcon = document.createElement("span");
+  const closeIcon = document.createElement("li");
   const taskName = document.createElement("li");
   const dueDateEl = document.createElement("li");
   const priority = document.createElement("li");
@@ -27,6 +27,7 @@ function displayDetails(toDo) {
   taskBackground.id = "taskBackground";
   taskInfo.id = "taskInfo";
   closeIcon.id = "closeIcon";
+  taskName.id = "taskDetailsName";
 
   // Get The Due Date Of The Todo
   // Then Set It Up To Be Formated By dates-fns
@@ -39,8 +40,9 @@ function displayDetails(toDo) {
       10
     ) - 1; // Subtract 1 for dates-fns format
   dueDate = format(new Date(year, month, day), "MMM d yyyy");
+
   // Assign Task Information
-  taskName.innerText = `Task: ${toDo.getTask()}`;
+  taskName.innerText = toDo.getTask();
   dueDateEl.innerText = `Due Date: ${dueDate}`;
   priority.innerText = `Priority: ${toDo.getPriority()}`;
   taskDescription.innerText = `Description: ${toDo.getDescription()}`;

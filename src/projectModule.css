@@ -183,6 +183,14 @@
   row-gap: 20px;
   transition: padding 0.3s ease;
 }
+#closeIcon {
+  margin-left: auto;
+  width: fit-content;
+}
+#closeIcon:hover {
+  cursor: pointer;
+  color: red;
+}
 
 @media screen and (max-width: 800px) {
   .taskName {

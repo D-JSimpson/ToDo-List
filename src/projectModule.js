@@ -17,6 +17,7 @@ function displayDetails(toDo) {
   // Create Necessary Elements
   const taskBackground = document.createElement("div");
   const taskInfo = document.createElement("ul");
+  const closeIcon = document.createElement("span");
   const taskName = document.createElement("li");
   const dueDate = document.createElement("li");
   const priority = document.createElement("li");
@@ -25,12 +26,16 @@ function displayDetails(toDo) {
   // Give Them IDs
   taskBackground.id = "taskBackground";
   taskInfo.id = "taskInfo";
+  closeIcon.id = "closeIcon";
 
   // Assign Task Information
   taskName.innerText = `Task: ${toDo.getTask()}`;
   dueDate.innerText = `Due Date: ${toDo.getDueDate()}`;
   priority.innerText = `Priority: ${toDo.getPriority()}`;
   taskDescription.innerText = `Description: ${toDo.getDescription()}`;
+
+  // Icon To Close Details
+  closeIcon.innerText = "\u2716";
 
   // Functionality
   // Checks If User Clicks Out Of Project Form
@@ -39,7 +44,12 @@ function displayDetails(toDo) {
     if (!withinBoundaries) removeDetails(taskBackground);
   });
 
-  taskInfo.append(taskName, dueDate, priority, taskDescription);
+  // Close Details If Icon Clicked
+  closeIcon.addEventListener("click", () => {
+    body.removeChild(taskBackground);
+  });
+
+  taskInfo.append(closeIcon, taskName, dueDate, priority, taskDescription);
   taskBackground.appendChild(taskInfo);
   body.appendChild(taskBackground);
 }

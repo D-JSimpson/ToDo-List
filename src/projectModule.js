@@ -20,6 +20,7 @@ function displayDetails(toDo) {
   const taskInfo = document.createElement("ul");
   const closeIcon = document.createElement("li");
   const taskName = document.createElement("li");
+  const forProject = document.createElement("li");
   const dueDateEl = document.createElement("li");
   const priority = document.createElement("li");
   const taskDescription = document.createElement("li");
@@ -44,6 +45,7 @@ function displayDetails(toDo) {
 
   // Assign Task Information
   taskName.innerText = toDo.getTask();
+  forProject.innerText = `Project: ${toDo.getProject().getName()}`;
   dueDateEl.innerText = `Due Date: ${dueDate}`;
   priority.innerText = `Priority: ${toDo.getPriority()}`;
   taskDescription.innerText = `Description: ${toDo.getDescription()}`;
@@ -63,7 +65,14 @@ function displayDetails(toDo) {
     body.removeChild(taskBackground);
   });
 
-  taskInfo.append(closeIcon, taskName, dueDateEl, priority, taskDescription);
+  taskInfo.append(
+    closeIcon,
+    taskName,
+    forProject,
+    dueDateEl,
+    priority,
+    taskDescription
+  );
   taskBackground.appendChild(taskInfo);
   body.appendChild(taskBackground);
 }

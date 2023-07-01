@@ -19,6 +19,12 @@ const todoController = (() => {
     // Only Add If has tpye set to Todo
     const { type } = todo;
     if (type === "Todo") todoList.push(todo);
+    todoList.sort((last, next) => {
+      if (last.getDueDate() > next.getDueDate()) {
+        return 1;
+      }
+      return -1;
+    });
   };
   const getTodoList = () => {
     console.log(todoList);

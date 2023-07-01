@@ -32,6 +32,7 @@ function taskFormSubmission(taskForm, project, toDo) {
   // But not when called by editIcon
   if (toDo !== undefined) {
     project.removeToDo(toDo);
+    events.emit("removeToDo", toDo);
   }
   // Link And Update
   project.addToDo(newTodo);

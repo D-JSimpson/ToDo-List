@@ -132,6 +132,7 @@ export function makeTodo(project, toDo) {
   // Then Update Page
   trashCan.addEventListener("click", () => {
     project.removeToDo(toDo);
+    events.emit("removeToDo", toDo);
     events.emit("updateTodo", project);
   });
 

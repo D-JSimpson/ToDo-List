@@ -119,11 +119,24 @@ export function makeTodo(project, toDo) {
 
   // Marking A Todo As Done
   todoCheckbox.addEventListener("click", () => {
+    toDo.toggleComplete();
+    todoCheckbox.toggleAttribute("checked");
     taskName.classList.toggle("strikeThrough");
     detailsBtn.classList.toggle("detailsBtnChecked");
     trashCan.classList.toggle("trashCanChecked");
     editIcon.classList.toggle("editIconChecked");
   });
+
+  // Equal To True Means The Todo Is Complete
+  // This Is So That If A Todo Is Checked Somwhere,
+  // It Will Appear Checked Elsewhere
+  if (toDo.getStatus() === true) {
+    todoCheckbox.toggleAttribute("checked");
+    taskName.classList.toggle("strikeThrough");
+    detailsBtn.classList.toggle("detailsBtnChecked");
+    trashCan.classList.toggle("trashCanChecked");
+    editIcon.classList.toggle("editIconChecked");
+  }
 
   // Display Details Of The Todo
   detailsBtn.addEventListener("click", () => {

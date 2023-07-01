@@ -27,6 +27,7 @@ export function createProject(name, color) {
 }
 export function createTodo(task, description, dueDate, priority, project) {
   const type = "Todo";
+  let complete = false;
   const getTask = () => task;
   const getDescription = () => description;
   const getDueDate = () => dueDate;
@@ -36,7 +37,14 @@ export function createTodo(task, description, dueDate, priority, project) {
     // eslint-disable-next-line no-param-reassign
     project = newProject;
   };
-
+  const toggleComplete = () => {
+    if (complete === true) {
+      complete = false;
+    } else {
+      complete = true;
+    }
+  };
+  const getStatus = () => complete;
   return {
     getTask,
     getDescription,
@@ -45,5 +53,7 @@ export function createTodo(task, description, dueDate, priority, project) {
     getProject,
     type,
     setProject,
+    toggleComplete,
+    getStatus,
   };
 }

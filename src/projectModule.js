@@ -67,8 +67,8 @@ function displayDetails(toDo) {
   taskBackground.appendChild(taskInfo);
   body.appendChild(taskBackground);
 }
-
-function makeTodo(project, toDo) {
+// Export So openInbox Can Use As Well
+export function makeTodo(project, toDo) {
   // The ToDos For The Project
   const todo = document.createElement("section");
   const priorityColor = document.createElement("span");

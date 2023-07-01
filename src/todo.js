@@ -2,7 +2,15 @@ export function createProject(name, color) {
   const toDO = [];
   const getName = () => name;
   const getColor = () => color;
-  const addToDo = (todo) => toDO.push(todo);
+  const addToDo = (todo) => {
+    toDO.push(todo);
+    toDO.sort((last, next) => {
+      if (last.getDueDate() > next.getDueDate()) {
+        return 1;
+      }
+      return -1;
+    });
+  };
   const getToDo = () => toDO;
   const removeToDo = (todo) => {
     const location = toDO.indexOf(todo);

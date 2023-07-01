@@ -1,5 +1,5 @@
 export function createProject(name, color) {
-  const toDO = [];
+  let toDO = [];
   const getName = () => name;
   const getColor = () => color;
   const addToDo = (todo) => {
@@ -16,14 +16,34 @@ export function createProject(name, color) {
     const location = toDO.indexOf(todo);
     toDO.splice(location, 1);
   };
-  return { getName, getColor, addToDo, getToDo, removeToDo };
+  const clone = (projectOne, projectTwo) => {
+    const todoList = projectTwo.getToDo();
+    toDO = [...todoList];
+    toDO.forEach((todo) => {
+      todo.setProject(projectOne);
+    });
+  };
+  return { getName, getColor, addToDo, getToDo, removeToDo, clone };
 }
 export function createTodo(task, description, dueDate, priority, project) {
+  const type = "Todo";
   const getTask = () => task;
   const getDescription = () => description;
   const getDueDate = () => dueDate;
   const getPriority = () => priority;
   const getProject = () => project;
-  const type = "Todo";
-  return { getTask, getDescription, getDueDate, getPriority, getProject, type };
+  const setProject = (newProject) => {
+    // eslint-disable-next-line no-param-reassign
+    project = newProject;
+  };
+
+  return {
+    getTask,
+    getDescription,
+    getDueDate,
+    getPriority,
+    getProject,
+    type,
+    setProject,
+  };
 }

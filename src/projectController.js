@@ -36,12 +36,15 @@ const projectController = (() => {
         addOperation = "";
         addLocation = -1;
         break;
-      case "edit":
-        projectList.splice(addLocation - 1, 1, projectList.pop());
+      case "edit": {
+        const newProject = projectList.pop();
+        newProject.clone(newProject, projectList[addLocation - 1]);
+        projectList.splice(addLocation - 1, 1, newProject);
         // Reset Last Action To Nothing
         addOperation = "";
         addLocation = -1;
         break;
+      }
       case "remove":
         projectList.splice(addLocation - 1, 1);
         // Reset Last Action To Nothing

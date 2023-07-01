@@ -24,7 +24,8 @@ function taskFormSubmission(taskForm, project, toDo) {
     taskName,
     taskDescription,
     dueDate,
-    selectPriority
+    selectPriority,
+    project
   );
   // This Part Of The Function Is For Editing Todos
   // toDo will undefined when called by addTodoBtn

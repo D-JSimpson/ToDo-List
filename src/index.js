@@ -5,7 +5,6 @@ import "./projectForm.css";
 import { events } from "./pubsub";
 import { createTodo, createProject } from "./todo";
 import displayProjectInputField from "./projectForm";
-import openInbox from "./openInbox";
 
 const body = document.querySelector("body");
 
@@ -22,7 +21,7 @@ sideBarInbox.id = "sideBarInbox";
 sideBarInbox.innerText = "ToDo Inbox";
 sideBarInbox.title = "TODO INBOX";
 sideBarInbox.addEventListener("click", () => {
-  openInbox();
+  events.emit("openInbox");
 });
 
 // Projects For the SideBar
@@ -113,30 +112,37 @@ const projectHome = createProject("Home", "#DC143C");
 const projectWork = createProject("Work", "#00FF00");
 const projectEducation = createProject("Education", "#FFD700");
 
-let todo = createTodo("Study", "Now", "2023-01-10", "Priority 1");
+let todo = createTodo("Study", "Now", "2023-01-10", "Priority 1", projectHome);
 projectHome.addToDo(todo);
-todo = createTodo("Walk", "Gotta Exercise", "2023-02-28", "Priority 2");
+events.emit("addTodo", todo);
+todo = createTodo(
+  "Walk",
+  "Gotta Exercise",
+  "2023-02-28",
+  "Priority 2",
+  projectHome
+);
 projectHome.addToDo(todo);
+events.emit("addTodo", todo);
 todo = createTodo(
   "Dinner",
   "Make Dinner For Parents",
   "2023-04-21",
-  "Priority 3"
+  "Priority 3",
+  projectHome
 );
 projectHome.addToDo(todo);
+events.emit("addTodo", todo);
 todo = createTodo(
   "Job Hunt",
   "Send Out Applications",
   "2024-04-19",
-  "Priority 4"
+  "Priority 4",
+  projectHome
 );
 projectHome.addToDo(todo);
+events.emit("addTodo", todo);
 
 events.emit("addProject", projectHome);
 events.emit("addProject", projectWork);
 events.emit("addProject", projectEducation);
-
-const p1 = createProject("P1", "#FFD700");
-const t1 = createTodo("Study", "Now", "1/10/2023", "1");
-p1.addToDo(t1);
-console.log(p1.getToDo());

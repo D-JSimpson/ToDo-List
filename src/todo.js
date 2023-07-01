@@ -10,10 +10,12 @@ export function createProject(name, color) {
   };
   return { getName, getColor, addToDo, getToDo, removeToDo };
 }
-export function createTodo(task, description, dueDate, priority) {
+export function createTodo(task, description, dueDate, priority, project) {
   const getTask = () => task;
   const getDescription = () => description;
   const getDueDate = () => dueDate;
   const getPriority = () => priority;
-  return { getTask, getDescription, getDueDate, getPriority };
+  const getProject = () => project;
+  const type = "Todo";
+  return { getTask, getDescription, getDueDate, getPriority, getProject, type };
 }

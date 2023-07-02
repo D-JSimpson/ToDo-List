@@ -336,6 +336,9 @@ const projectController = (() => {
   // Will Probably Create New events For These
   events.on("addProject", updateLocalStorage);
   events.on("addProjectSidebarOnly", updateLocalStorage);
+  events.on("removeToDo", updateLocalStorage);
+  events.on("addTodo", updateLocalStorage);
+  events.on("updateTodoCount", updateLocalStorage);
 
   events.on("addProjectSidebarOnly", addProjectToSideBar);
   events.on("addProjectSidebarOnly", updateProjectList);

@@ -117,69 +117,76 @@ const projectHome = createProject("Home", "#DC143C");
 const projectWork = createProject("Work", "#00FF00");
 const projectEducation = createProject("Education", "#FFD700");
 
-let todo = createTodo("Study", "Now", "2023-01-10", "Priority 1", projectHome);
-projectHome.addToDo(todo);
-events.emit("addTodo", todo);
-todo = createTodo(
-  "Walk",
-  "Gotta Exercise",
-  "2023-02-28",
-  "Priority 2",
-  projectHome
-);
-projectHome.addToDo(todo);
-events.emit("addTodo", todo);
-todo = createTodo(
-  "Dinner",
-  "Make Dinner For Parents",
-  "2023-04-21",
-  "Priority 3",
-  projectHome
-);
-projectHome.addToDo(todo);
-events.emit("addTodo", todo);
-todo = createTodo(
-  "Job Hunt",
-  "Send Out Applications",
-  "2024-04-19",
-  "Priority 4",
-  projectHome
-);
-projectHome.addToDo(todo);
-events.emit("addTodo", todo);
+function initializeSetup() {
+  let todo = createTodo(
+    "Study",
+    "Now",
+    "2023-01-10",
+    "Priority 1",
+    projectHome
+  );
+  projectHome.addToDo(todo);
+  events.emit("addTodo", todo);
+  todo = createTodo(
+    "Walk",
+    "Gotta Exercise",
+    "2023-02-28",
+    "Priority 2",
+    projectHome
+  );
+  projectHome.addToDo(todo);
+  events.emit("addTodo", todo);
+  todo = createTodo(
+    "Dinner",
+    "Make Dinner For Parents",
+    "2023-04-21",
+    "Priority 3",
+    projectHome
+  );
+  projectHome.addToDo(todo);
+  events.emit("addTodo", todo);
+  todo = createTodo(
+    "Job Hunt",
+    "Send Out Applications",
+    "2024-04-19",
+    "Priority 4",
+    projectHome
+  );
+  projectHome.addToDo(todo);
+  events.emit("addTodo", todo);
 
-todo = createTodo(
-  "Report",
-  "Report Due On Friday",
-  "2023-02-28",
-  "Priority 2",
-  projectWork
-);
-projectWork.addToDo(todo);
-events.emit("addTodo", todo);
-todo = createTodo(
-  "Meeting",
-  "Attend Meeting For New Feature",
-  "2023-04-21",
-  "Priority 3",
-  projectWork
-);
-projectWork.addToDo(todo);
-events.emit("addTodo", todo);
-todo = createTodo(
-  "Staples",
-  "No More Staples In Stapler",
-  "2024-04-19",
-  "Priority 4",
-  projectWork
-);
-projectWork.addToDo(todo);
-events.emit("addTodo", todo);
+  todo = createTodo(
+    "Report",
+    "Report Due On Friday",
+    "2023-02-28",
+    "Priority 2",
+    projectWork
+  );
+  projectWork.addToDo(todo);
+  events.emit("addTodo", todo);
+  todo = createTodo(
+    "Meeting",
+    "Attend Meeting For New Feature",
+    "2023-04-21",
+    "Priority 3",
+    projectWork
+  );
+  projectWork.addToDo(todo);
+  events.emit("addTodo", todo);
+  todo = createTodo(
+    "Staples",
+    "No More Staples In Stapler",
+    "2024-04-19",
+    "Priority 4",
+    projectWork
+  );
+  projectWork.addToDo(todo);
+  events.emit("addTodo", todo);
 
-events.emit("addProject", projectHome);
-events.emit("addProject", projectWork);
-events.emit("addProject", projectEducation);
-
+  events.emit("addProject", projectHome);
+  events.emit("addProject", projectWork);
+  events.emit("addProject", projectEducation);
+}
 // Not Funtional Right Now But,
 // Planned To Have Check For storageProjectList In Local Storage
 function storageAvailable(type) {
@@ -210,7 +217,7 @@ function storageAvailable(type) {
 }
 if (storageAvailable("localStorage")) {
   if (!localStorage.getItem("storageProjectList")) {
-    console.log("// Yippee! We can use localStorage awesomeness");
+    initializeSetup();
   } else {
     // Grab Object From Local Storage
     const projectObject = JSON.parse(
@@ -242,7 +249,7 @@ if (storageAvailable("localStorage")) {
         // Set Information Using Whats In The Array
         // Always Same Order
         const taskName = todoString;
-        const connectedProject = todoInfo[0];
+        const connectedProject = projectGenerated;
         const dueDate = todoInfo[1];
         const priority = todoInfo[2];
         const description = todoInfo[3];
@@ -266,10 +273,12 @@ if (storageAvailable("localStorage")) {
         );
         // Add Todo To Correct Project
         projectGenerated.addToDo(todoGenerated);
+        events.emit("addTodo", todoGenerated);
       });
 
       console.log();
       console.log(projectGenerated.getToDo());
+      events.emit("addProject", projectGenerated);
     });
   }
 }

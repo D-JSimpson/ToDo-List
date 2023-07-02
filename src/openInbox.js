@@ -7,8 +7,14 @@ export default function openInbox(todoList) {
   content.replaceChildren();
   // The Label For The Page
   const inbox = document.createElement("div");
+  const inboxLabel = document.createElement("span");
+
+  // Inner Text And ID's
   inbox.id = "inbox";
-  inbox.innerText = "Inbox";
+  inboxLabel.id = "inboxLabel";
+  inboxLabel.innerText = "Inbox";
+
+  inbox.appendChild(inboxLabel);
 
   // Add Todos To The Page
   todoList.forEach((toDo) => {

@@ -74,13 +74,17 @@ export default function displayTaskInputField(project, toDo) {
   // Funtionality
   taskName.setAttribute("minlength", 1);
   taskName.setAttribute("maxlength", 20);
-  taskName.toggleAttribute("required");
   taskName.setAttribute("placeholder", "Task Name");
   taskDescription.setAttribute("placeholder", "Description");
   dueDateBtn.setAttribute("type", "date");
   saveBtn.setAttribute("type", "submit");
   saveBtn.setAttribute("form", "taskForm");
 
+  // Require Everything
+  taskName.toggleAttribute("required");
+  taskDescription.toggleAttribute("required");
+  dueDateBtn.toggleAttribute("required");
+  selectPriority.toggleAttribute("required");
   // Validation
   taskName.addEventListener("keyup", () => {
     // Check if the form fields are valid.

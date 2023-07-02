@@ -4,6 +4,7 @@ import openInbox from "./openInbox";
 
 const todoController = (() => {
   const todoList = [];
+  // Used To Render Todo After Deletion Or Checked
   const updateTodo = (project) => {
     const selectedProject = document.querySelector("#selectedProject");
     // selectedProject will be null when a project is

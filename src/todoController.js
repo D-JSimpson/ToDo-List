@@ -21,7 +21,7 @@ const todoController = (() => {
     if (type === "Todo") todoList.push(todo);
     // Sort The Todos By DueDate
     todoList.sort((last, next) => {
-      if (last.getDueDate() > next.getDueDate()) {
+      if (last.getDueDate() >= next.getDueDate()) {
         return 1;
       }
       return -1;

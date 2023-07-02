@@ -5,7 +5,7 @@ export function createProject(name, color) {
   const addToDo = (todo) => {
     toDO.push(todo);
     toDO.sort((last, next) => {
-      if (last.getDueDate() > next.getDueDate()) {
+      if (last.getDueDate() >= next.getDueDate()) {
         return 1;
       }
       return -1;

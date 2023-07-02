@@ -246,10 +246,96 @@ const projectController = (() => {
     });
     colorCircle.innerText = completeCtr;
   };
+  const updateLocalStorage = () => {
+    // Represent The Configuration Of Current Project And Todo Setup
+    // This Is Gonna Be An Obeject Of Objects
+    // Each Project Is A Property With An Object As Its Value
+    // Then Inside That Object Value Is Another Object With A Single Property
+    // That Property Is The Todos Name
+    // That Todo Will Have An Object As Its Value
+    // And Finally Those Properties Are The Todos Information
+    const storageProjectList = {};
+    projectList.forEach((project) => {
+      const projectName = project.getName();
+      const todoList = project.getToDo();
+      const todoObject = {};
+
+      // Set A Property On todoObject For Each Todo
+      todoList.forEach((todo) => {
+        // Infromation About The Todo
+        const info = {};
+        const connectedProject = projectName;
+        const dueDate = todo.getDueDate();
+        const priority = todo.getPriority();
+        const description = todo.getDescription();
+        const status = todo.getStatus();
+        // Store In An Object
+        Object.defineProperties(info, {
+          Project: {
+            value: connectedProject,
+            enumerable: true,
+            writable: true,
+          },
+          DueDate: {
+            value: dueDate,
+            enumerable: true,
+            writable: true,
+          },
+          Priority: {
+            value: priority,
+            enumerable: true,
+            writable: true,
+          },
+          Description: {
+            value: description,
+            enumerable: true,
+            writable: true,
+          },
+          Status: {
+            value: status,
+            enumerable: true,
+            writable: true,
+          },
+        });
+
+        console.log(`Keys: ${Object.keys(info)}`);
+        // Use Todos Name To Set Property
+        // Pass Information Related To The Task
+        const taskName = todo.getTask();
+        Object.defineProperty(todoObject, taskName, {
+          value: info,
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        });
+      });
+
+      Object.defineProperty(storageProjectList, projectName, {
+        value: todoObject,
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      });
+    });
+
+    // Put Into Local Storage
+    localStorage.setItem(
+      "storageProjectList",
+      JSON.stringify(storageProjectList)
+    );
+    // Check What Is Stored
+    const projects = JSON.parse(localStorage.getItem("storageProjectList"));
+    console.log(projects);
+  };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
   events.on("addProject", updateProjectList);
+
+  // Will Probably Create New events For These
+  events.on("addProject", updateLocalStorage);
+  events.on("addProjectSidebarOnly", updateLocalStorage);
+
   events.on("addProjectSidebarOnly", addProjectToSideBar);
   events.on("addProjectSidebarOnly", updateProjectList);
   events.on("renderSidebar", renderSideBar);

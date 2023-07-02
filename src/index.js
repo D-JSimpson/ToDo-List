@@ -209,7 +209,67 @@ function storageAvailable(type) {
   }
 }
 if (storageAvailable("localStorage")) {
-  console.log("// Yippee! We can use localStorage awesomeness");
-} else {
-  console.log("// Too bad, no localStorage for us");
+  if (!localStorage.getItem("storageProjectList")) {
+    console.log("// Yippee! We can use localStorage awesomeness");
+  } else {
+    // Grab Object From Local Storage
+    const projectObject = JSON.parse(
+      localStorage.getItem("storageProjectList")
+    );
+    // Get The Projects
+    const projectList = Object.keys(projectObject);
+
+    // For Each Project In Storage
+    projectList.forEach((projectString) => {
+      // Property Name On The Object Stored Is
+      // Split Into Project Name And Color
+      // Ex: Home#DC143C
+      const hashtagPosition = projectString.lastIndexOf("#"); // Incase Hashtag Is In Projects Name Of User
+      const color = projectString.substring(hashtagPosition);
+      const projectName = projectString.substring(0, hashtagPosition);
+      // Project Reverse Engineered From localStorage
+      const projectGenerated = createProject(projectName, color);
+
+      // The Object Of Todos
+      const todoObject = projectObject[projectString];
+      // Each Todo On The Object
+      const todoList = Object.keys(projectObject[projectString]);
+
+      todoList.forEach((todoString) => {
+        // Array Of Infromation About The Todo
+        const todoInfo = Object.values(todoObject[todoString]);
+
+        // Set Information Using Whats In The Array
+        // Always Same Order
+        const taskName = todoString;
+        const connectedProject = todoInfo[0];
+        const dueDate = todoInfo[1];
+        const priority = todoInfo[2];
+        const description = todoInfo[3];
+        const completed = todoInfo[4];
+        // Make The Todo
+        const todoGenerated = createTodo(
+          taskName,
+          description,
+          dueDate,
+          priority,
+          connectedProject
+        );
+        // On Creation The Completion Of A Todo Is Set To False
+        // So If The Todo Was Done Toggle It To Complete
+        if (completed === true) {
+          todoGenerated.toggleComplete();
+        }
+
+        console.log(
+          `${todoGenerated.getTask()} | ${todoGenerated.getDescription()} | ${todoGenerated.getDueDate()} | ${todoGenerated.getPriority()}  | ${todoGenerated.getProject()}`
+        );
+        // Add Todo To Correct Project
+        projectGenerated.addToDo(todoGenerated);
+      });
+
+      console.log();
+      console.log(projectGenerated.getToDo());
+    });
+  }
 }

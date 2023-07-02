@@ -10,6 +10,7 @@ export default function openInbox(todoList) {
   inbox.id = "inbox";
   inbox.innerText = "Inbox";
 
+  // Add Todos To The Page
   todoList.forEach((toDo) => {
     // Get The Project And Create Element
     // Use Function Already Made Before

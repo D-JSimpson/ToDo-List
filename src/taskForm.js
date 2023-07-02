@@ -38,6 +38,7 @@ function taskFormSubmission(taskForm, project, toDo) {
   project.addToDo(newTodo);
   events.emit("addTodo", newTodo);
   events.emit("updateTodo", project);
+  events.emit("updateProjectTodoCount", project);
 }
 
 export default function displayTaskInputField(project, toDo) {

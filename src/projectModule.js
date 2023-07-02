@@ -125,6 +125,8 @@ export function makeTodo(project, toDo) {
     detailsBtn.classList.toggle("detailsBtnChecked");
     trashCan.classList.toggle("trashCanChecked");
     editIcon.classList.toggle("editIconChecked");
+    events.emit("updateTodoCount");
+    events.emit("updateProjectTodoCount", project);
   });
 
   // Equal To True Means The Todo Is Complete
@@ -156,6 +158,8 @@ export function makeTodo(project, toDo) {
     project.removeToDo(toDo);
     events.emit("removeToDo", toDo);
     events.emit("updateTodo", project);
+    events.emit("updateTodoCount");
+    events.emit("updateProjectTodoCount", project);
   });
 
   // Append

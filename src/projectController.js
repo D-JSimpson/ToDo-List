@@ -86,6 +86,7 @@ const projectController = (() => {
     // Create Needed Elements
     const elem = document.createElement("a");
     const colorCircle = document.createElement("span");
+    const todoCount = document.createElement("span");
     const name = document.createElement("span");
     // Functionality
     colorCircle.style.backgroundColor = project.getColor();
@@ -93,12 +94,24 @@ const projectController = (() => {
     elem.title = project.getName();
     colorCircle.classList.add("colorCircle-P");
 
+    // Set Todo Count Of The Project
+    // Based On What Completed
+    const todoList = project.getToDo();
+    let completeCtr = 0;
+    todoList.forEach((toDo) => {
+      if (toDo.getStatus() !== true) {
+        completeCtr += 1;
+      }
+    });
+    todoCount.innerText = completeCtr;
+
     // Go To The Project's ToDos
     elem.addEventListener("click", () => {
       projectModule(project);
     });
 
     // Append Together
+    colorCircle.appendChild(todoCount);
     elem.appendChild(colorCircle);
     elem.appendChild(name);
     projectsContainer.appendChild(elem);
@@ -215,6 +228,24 @@ const projectController = (() => {
   const updateProjectList = (project) => {
     projectList.push(project);
   };
+  const updateProjectTodoCount = (project) => {
+    // Update Todo Count On A Project
+    // Perform Operations To Get Color Circle
+    // Of Selected Project
+    const listPosition = projectList.indexOf(project);
+    const container = document.querySelector("#projectsContainer");
+    const projectElement = Array.from(container.children)[listPosition];
+    const colorCircle = projectElement.firstChild;
+
+    const todoList = project.getToDo();
+    let completeCtr = 0;
+    todoList.forEach((toDo) => {
+      if (toDo.getStatus() !== true) {
+        completeCtr += 1;
+      }
+    });
+    colorCircle.innerText = completeCtr;
+  };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
@@ -223,4 +254,5 @@ const projectController = (() => {
   events.on("addProjectSidebarOnly", updateProjectList);
   events.on("renderSidebar", renderSideBar);
   events.on("render", render);
+  events.on("updateProjectTodoCount", updateProjectTodoCount);
 })();

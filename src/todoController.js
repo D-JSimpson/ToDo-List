@@ -19,6 +19,7 @@ const todoController = (() => {
     // Only Add If has tpye set to Todo
     const { type } = todo;
     if (type === "Todo") todoList.push(todo);
+    // Sort The Todos By DueDate
     todoList.sort((last, next) => {
       if (last.getDueDate() > next.getDueDate()) {
         return 1;
@@ -37,10 +38,24 @@ const todoController = (() => {
     const location = todoList.indexOf(todo);
     todoList.splice(location, 1);
   };
+  const updateTodoCount = () => {
+    // Update Todo Count
+    const sideBarInbox = document.querySelector("#sideBarInbox");
+    const colorCircle = sideBarInbox.lastChild;
+    let completeCtr = 0;
+    todoList.forEach((toDo) => {
+      if (toDo.getStatus() !== true) {
+        completeCtr += 1;
+      }
+    });
+    colorCircle.innerText = completeCtr;
+  };
   events.on("updateTodo", updateTodo);
   events.on("addTodo", updateTodoList);
   events.on("openInbox", todoInbox);
   events.on("removeToDo", removeToDo);
+  events.on("updateTodoCount", updateTodoCount);
+  events.on("addTodo", updateTodoCount);
 
   return { getTodoList };
 })();

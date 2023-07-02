@@ -23,6 +23,11 @@ sideBarInbox.title = "TODO INBOX";
 sideBarInbox.addEventListener("click", () => {
   events.emit("openInbox");
 });
+// Circle That Displays Todo Count
+const colorCircle = document.createElement("span");
+colorCircle.classList.add("colorCircle-Inbox");
+colorCircle.style.backgroundColor = "white";
+sideBarInbox.appendChild(colorCircle);
 
 // Projects For the SideBar
 // Label
@@ -141,6 +146,34 @@ todo = createTodo(
   projectHome
 );
 projectHome.addToDo(todo);
+events.emit("addTodo", todo);
+
+todo = createTodo(
+  "Report",
+  "Report Due On Friday",
+  "2023-02-28",
+  "Priority 2",
+  projectWork
+);
+projectWork.addToDo(todo);
+events.emit("addTodo", todo);
+todo = createTodo(
+  "Meeting",
+  "Attend Meeting For New Feature",
+  "2023-04-21",
+  "Priority 3",
+  projectWork
+);
+projectWork.addToDo(todo);
+events.emit("addTodo", todo);
+todo = createTodo(
+  "Staples",
+  "No More Staples In Stapler",
+  "2024-04-19",
+  "Priority 4",
+  projectWork
+);
+projectWork.addToDo(todo);
 events.emit("addTodo", todo);
 
 events.emit("addProject", projectHome);

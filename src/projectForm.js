@@ -102,7 +102,7 @@ export default function displayProjectInputField() {
     { Siena: "#A0522D" },
     { Lavender: "#E6E6FA" },
     { HoneyDew: "#F0FFF0" },
-    { Black: "#000000" },
+    { Silver: "#C0C0C0" },
   ];
   colors.forEach((element) => {
     const option = document.createElement("option");

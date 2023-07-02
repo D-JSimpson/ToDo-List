@@ -257,6 +257,7 @@ const projectController = (() => {
     const storageProjectList = {};
     projectList.forEach((project) => {
       const projectName = project.getName();
+      const projectNameAndColor = project.getName() + project.getColor();
       const todoList = project.getToDo();
       const todoObject = {};
 
@@ -298,7 +299,7 @@ const projectController = (() => {
           },
         });
 
-        console.log(`Keys: ${Object.keys(info)}`);
+        //  console.log(`Keys: ${Object.keys(info)}`);
         // Use Todos Name To Set Property
         // Pass Information Related To The Task
         const taskName = todo.getTask();
@@ -310,7 +311,7 @@ const projectController = (() => {
         });
       });
 
-      Object.defineProperty(storageProjectList, projectName, {
+      Object.defineProperty(storageProjectList, projectNameAndColor, {
         value: todoObject,
         writable: true,
         enumerable: true,
@@ -324,8 +325,8 @@ const projectController = (() => {
       JSON.stringify(storageProjectList)
     );
     // Check What Is Stored
-    const projects = JSON.parse(localStorage.getItem("storageProjectList"));
-    console.log(projects);
+    // const projects = JSON.parse(localStorage.getItem("storageProjectList"));
+    // console.log(projects);
   };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);

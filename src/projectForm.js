@@ -22,7 +22,7 @@ function projectFormSubmission(form) {
   projectModule(newProject);
 }
 
-export default function displayProjectInputField() {
+export default function displayProjectInputField(project) {
   // Create Necessary Elements
   const projectUserInput = document.createElement("div");
   const inputContainer = document.createElement("div");
@@ -119,6 +119,21 @@ export default function displayProjectInputField() {
     colorsSelect.appendChild(option);
   });
   colorsSelect.firstChild.selected = true; // Default Value
+
+  // This Part Of The Function Is For Editing Projects
+  // project will undefined when called by anything else
+  // But not when called by the edit project button
+  const isProject = Object.hasOwn(project, "getName"); // Make Sure Its a Project
+  if (isProject) {
+    addProjectLabel.innerText = "Edit Project";
+    nameInput.value = project.getName();
+    const color = project.getColor();
+    const options = Array.from(colorsSelect.childNodes);
+    options.forEach((option) => {
+      const el = option;
+      if (option.value === color) el.selected = true;
+    });
+  }
 
   // Append Everything Together
   nameInputLabel.append(nameInputSpan, nameInput);

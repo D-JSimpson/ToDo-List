@@ -12,6 +12,7 @@ const projectsContainer = document.getElementById("projectsContainer");
 
 // Go To The Home For All Projects
 projectLabel.addEventListener("click", () => {
+  events.emit("clearOperations");
   events.emit("render");
 });
 // Add Project To The Sidebar and Page Using The Factory Function
@@ -136,11 +137,16 @@ const projectController = (() => {
     addOperation = operation;
     addLocation = index;
 
-    // Get Project Information From User
-    // Do Not Need To Add If Removing
-    if (operation !== "remove") displayProjectInputField();
-    else {
-      events.emit("render"); // But Will Have To Rerender If Removing
+    // Perform Needed Action Based On Button Clicked
+    if (operation === "remove")
+      events.emit("render"); // Will Have To Rerender If Removing
+    else if (operation === "edit") {
+      // Pass The Project Clicked To Display Its Information
+      const prjct = projectList[addLocation - 1];
+      displayProjectInputField(prjct);
+    } else {
+      // Get Project Information From User
+      displayProjectInputField();
     }
   };
   // Add the options themselves
@@ -328,6 +334,9 @@ const projectController = (() => {
     // const projects = JSON.parse(localStorage.getItem("storageProjectList"));
     // console.log(projects);
   };
+  const clearOperations = () => {
+    addOperation = "";
+  };
   // Listen For Project Creation And Deletion
   events.on("addProject", addProjectToSideBar);
   events.on("addProject", addProjectToPage);
@@ -345,4 +354,5 @@ const projectController = (() => {
   events.on("renderSidebar", renderSideBar);
   events.on("render", render);
   events.on("updateProjectTodoCount", updateProjectTodoCount);
+  events.on("clearOperations", clearOperations);
 })();

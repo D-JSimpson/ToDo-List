@@ -75,26 +75,79 @@ export default function displayTaskInputField(project, toDo) {
   taskName.setAttribute("minlength", 1);
   taskName.setAttribute("maxlength", 20);
   taskName.setAttribute("placeholder", "Task Name");
+  taskDescription.setAttribute("minlength", 1);
   taskDescription.setAttribute("placeholder", "Description");
   dueDateBtn.setAttribute("type", "date");
   saveBtn.setAttribute("type", "submit");
   saveBtn.setAttribute("form", "taskForm");
+  saveBtn.setAttribute("title", "Fill Out All Fields");
 
   // Require Everything
   taskName.toggleAttribute("required");
   taskDescription.toggleAttribute("required");
   dueDateBtn.toggleAttribute("required");
   selectPriority.toggleAttribute("required");
+
+  // Function To Check If Everything Is Valid
+  function checkValidation() {
+    if (
+      taskName.validity.valid &&
+      taskDescription.validity.valid &&
+      dueDateBtn.validity.valid &&
+      selectPriority.value !== "Priority?" // The Default Value
+    ) {
+      saveBtn.disabled = false;
+    } else {
+      saveBtn.disabled = true;
+    }
+  }
+
   // Validation
   taskName.addEventListener("keyup", () => {
     // Check if the form fields are valid.
     if (taskName.validity.valid) {
-      // If valid, enable submit button
-      saveBtn.disabled = false;
+      taskName.classList.remove("Invalid");
+      checkValidation();
     } else {
-      // If not valid, disable submit button
-      saveBtn.disabled = true;
+      // If not valid add invalid class to highlight red
+      taskName.classList.add("Invalid");
+      // Will Disable Sumbit Button
+      checkValidation();
     }
+  });
+
+  // At least One Character In Description
+  taskDescription.addEventListener("keyup", () => {
+    // Check if the form fields are valid.
+    if (taskDescription.validity.valid) {
+      taskDescription.classList.remove("Invalid");
+      checkValidation();
+    } else {
+      // If not valid add invalid class to highlight red
+      taskDescription.classList.add("Invalid");
+      // Will Disable Sumbit Button
+      checkValidation();
+    }
+  });
+  // A Date Selected
+  dueDateBtn.addEventListener("change", () => {
+    // Check if the form fields are valid.
+    if (dueDateBtn.validity.valid) {
+      dueDateBtn.classList.remove("Invalid");
+      checkValidation();
+    } else {
+      // If not valid add invalid class to highlight red
+      dueDateBtn.classList.add("Invalid");
+      // Will Disable Sumbit Button
+      checkValidation();
+    }
+  });
+  // A Priority Selected
+  // Once A Priority Is Selected It Can No Longer Go To Default
+  // So No Need To Verify In The Same Fashion
+  selectPriority.addEventListener("change", () => {
+    // Check if the other form fields are valid.
+    checkValidation();
   });
 
   // When Form Submitted
@@ -115,7 +168,7 @@ export default function displayTaskInputField(project, toDo) {
 
   // Create Priority Options
   const priorities = [
-    "Priority",
+    "Priority?",
     "Priority 1",
     "Priority 2",
     "Priority 3",

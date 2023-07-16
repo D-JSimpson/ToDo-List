@@ -45,6 +45,10 @@
   padding: 0;
   font-weight: bold;
 }
+.Invalid {
+  background-color: #fca5a5 !important;
+}
+
 #taskName:focus-visible,
 #taskDescription:focus-visible {
   outline: none;

@@ -70,7 +70,7 @@ export default function displayTaskInputField(project, toDo) {
   cancelBtn.classList.add("cancelBtn");
   saveBtn.classList.add("saveBtn");
   saveBtn.disabled = true;
-
+  dueDateBtn.innerText = "mm/dd/yyyy";
   // Funtionality
   taskName.setAttribute("minlength", 1);
   taskName.setAttribute("maxlength", 20);
